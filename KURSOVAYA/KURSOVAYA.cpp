@@ -3,13 +3,19 @@
 
 #include <iostream>
 #include "Header.h"
+#include "pole.h"
+
 using namespace std;
 
+pole doska1, doska2; //Доски игроков 1 - игрок, 2 - противник
 
 int main()
 {
-    //type POLE;
-    cout << "Hello World!\n";
+    /*int i;
+    for (i = 0; i < 30; i++)
+    {
+        cout << i << endl;
+    } */
 }
 
  
