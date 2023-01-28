@@ -3,7 +3,7 @@
 using namespace std;
 
 
-const int N = 10; //Размерность поля
+const int N = 10; //Размерность поля при отчете с 1
 
 enum sostoyanie //Состояние поля
 {
