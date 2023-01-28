@@ -1,6 +1,7 @@
 #pragma once
 #include "Header.h"
-class kletka
+#include "koordinata.h"
+class kletka : public koordinata
 {
 private:
 	 sostoyanie klet; //Хранит состояние клетки

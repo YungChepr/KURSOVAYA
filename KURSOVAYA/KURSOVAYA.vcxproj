@@ -128,14 +128,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ecran.cpp" />
+    <ClCompile Include="Igra.cpp" />
+    <ClCompile Include="Igrok.cpp" />
     <ClCompile Include="kletka.cpp" />
+    <ClCompile Include="koordinata.cpp" />
     <ClCompile Include="KURSOVAYA.cpp" />
+    <ClCompile Include="Odnopalybnik.cpp" />
     <ClCompile Include="pole.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ecran.h" />
     <ClInclude Include="Header.h" />
+    <ClInclude Include="Igra.h" />
+    <ClInclude Include="Igrok.h" />
     <ClInclude Include="kletka.h" />
+    <ClInclude Include="koordinata.h" />
+    <ClInclude Include="Odnopalybnik.h" />
     <ClInclude Include="pole.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
