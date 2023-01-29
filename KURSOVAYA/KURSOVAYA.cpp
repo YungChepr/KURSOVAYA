@@ -1,21 +1,21 @@
 ﻿// KURSOVAYA.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 
-#include <iostream>
 #include "Header.h"
 #include "pole.h"
+#include "Ecran.h"
 
 using namespace std;
 
 pole doska1, doska2; //Доски игроков 1 - игрок, 2 - противник
 
+Ecran ecranchik; 
+
 int main()
 {
-    /*int i;
-    for (i = 0; i < 30; i++)
-    {
-        cout << i << endl;
-    } */
+    ecranchik.prorisovka(doska1);
+    ecranchik.prorisovka(doska2);
+    
 }
 
  

@@ -1,9 +1,13 @@
-#include <iostream>
-
 #include "koordinata.h"
 #include "Header.h"
 
 using namespace std;
+
+koordinata::koordinata() //Конструктор
+{
+	koordinataX = -1;
+	koordinataY = -1;
+};
 
 void koordinata::getkoordinata(int* x, int* y) //Получение поля координата
 {
@@ -13,8 +17,7 @@ void koordinata::getkoordinata(int* x, int* y) //Получение поля координата
 
 void koordinata::setkoordinata(int x, int y) //Установка поля координата
 {
-	//НЕ ЗАВЕРШЕНО !!!
-	//Добавить проверку(try)на коректность переданной значения координат. Она должна быть от 0 до N.
+	// проверка на коректность переданной значения координат. Она должна быть от 0 до N.
 	try
 	{
 		if ((x < 0) || (x > (N-1)) || (y < 0) || (y > (N - 1)))

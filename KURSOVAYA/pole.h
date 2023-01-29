@@ -2,9 +2,8 @@
 #include "kletka.h"
 class pole 
 {
-private:
-	kletka pol[N][N]; //Хранит информацию о клетках
 public:
+	kletka pol[N][N]; //Хранит информацию о клетках
 	pole();
 	void chistka(); //Чистит поля
 };
