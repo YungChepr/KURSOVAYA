@@ -1,5 +1,4 @@
 #pragma once
-#include "Header.h"
 #include "koordinata.h"
 class kletka : public koordinata
 {

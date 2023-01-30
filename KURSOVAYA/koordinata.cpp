@@ -1,5 +1,4 @@
 #include "koordinata.h"
-#include "Header.h"
 
 using namespace std;
 
