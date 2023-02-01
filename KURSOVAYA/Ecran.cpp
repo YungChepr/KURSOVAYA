@@ -7,6 +7,7 @@ const string Ecran::bykvi[10] = { "a ","b ","c ","d ","e ","f ","g ","h ","j ","
 const string OTST = "          "; //Отступ при печати новой строчки 5 пробелов
 
 
+
 void Ecran::prorisovka(pole* doska)
 {
 
@@ -14,7 +15,7 @@ void Ecran::prorisovka(pole* doska)
 
 	//Вывод шапки
 	cout << endl << endl << endl;
-	cout << OTST <<  " ИГРОК 1 " << endl;
+	cout << OTST << "Игрок: " << doska->imyapolya << endl;
 	cout << endl;
 	
 

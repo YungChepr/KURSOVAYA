@@ -6,6 +6,12 @@ using namespace std;
 
 const int N = 10; //Размерность поля при отчете с 1
 
+const int kolodno = 4; //Количество однопалубников
+const int koldvy = 3; //Количество двупалубников
+const int kolnre = 2; //Количество трехпалубников
+const int kolchetire = 1; //Количество четырехпалубников
+const int M = kolodno + koldvy + kolnre + kolchetire; //Количество кораблей у игрока
+
 enum sostoyanie //Состояние поля
 {
 	PUST,		//Пустое

@@ -2,7 +2,7 @@
 
 pole::pole()
 {
-
+	imyapolya = "";
 };
 
 void pole::chistka() //Чистит поле
@@ -16,3 +16,4 @@ void pole::chistka() //Чистит поле
 		}
 	}
 };
+

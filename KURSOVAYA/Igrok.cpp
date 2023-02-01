@@ -4,7 +4,7 @@ Igrok::Igrok(string imya)
 	this->imya = imya;
 };
 
-void Igrok::vyborpolya(int* x, int* y) 
+void Igrok::vyborpolya(int* x, int* y) //Выстрел
 {
 
 };
