@@ -5,5 +5,5 @@
 class Igra
 {
 public: 
-	void rasstanovka(Odnopalybnik* korabli[M], pole doska);
+	void rasstanovka(Odnopalybnik* korabli[M], pole* doska);
 };
