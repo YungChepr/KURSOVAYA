@@ -4,6 +4,8 @@ class pole
 {
 public:
 	string imyapolya; // Хранит копию имени игрока
+	string koorposlxoda; // Хранит копию координаты последнего хода
+	string resposlxoda; // Хранит копию  результата последнего хода
 	kletka pol[N][N]; //Хранит информацию о клетках
 	pole();
 	void chistka(); //Чистит поля

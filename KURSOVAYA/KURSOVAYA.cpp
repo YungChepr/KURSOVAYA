@@ -18,6 +18,7 @@ Odnopalybnik* korabli2[M];
 Ecran ecranchik; 
 Igrok igrok1(s1), igrok2(s2);
 Igra Morskoyboy;
+int X, Y,f;
 
 int main()
 {
@@ -31,7 +32,6 @@ int main()
 
         //Блок начала игры
         doska1.imyapolya = igrok1.getimya();
-
         doska2.imyapolya = igrok2.getimya();
         korabli1[0] = new Odnopalybnik();
         korabli2[0] = new Odnopalybnik();
@@ -44,16 +44,15 @@ int main()
          
         //Блок хода игры
         do {
-            //Проверить кто ходит из игроков
-            //Сгенерировать координату выстрела
-            //Передать координату в функию выстрел
-            //В выстреле меняем состояние
-            //Цикл проверки состояния кораблей
-            //Если нет ни одного живого корабля то выход
+            
+            igrok1.vystrel(&X,&Y);
+            Morskoyboy.hod(korabli1, &doska1, X, Y);
 
+            ecranchik.prorisovka(&doska1);
+            ecranchik.prorisovka(&doska2);
 
-            //korabli1[0].getpalyba();
-        } while (1);
+            f = Morskoyboy.konecigry(korabli1);//1 - если игры продолэается, 0 - если закончилась
+        } while (f);
 
         //Блок конца игры
         cout << "Если вы хотите закончить игру введите 1" << endl;

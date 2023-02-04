@@ -36,7 +36,7 @@ void Ecran::prorisovka(pole* doska)
 
 	//Вывод подвала
 	cout << endl;
-	cout << OTST  << "Текущий ход: " << "a 1  " << endl;
-	cout << OTST  << "Результат:   " << "Попал" << endl;
+	cout << OTST  << "Текущий ход: " << doska->koorposlxoda << endl;
+	cout << OTST  << "Результат:   " << doska->resposlxoda << endl;
 	cout << endl;
 };
