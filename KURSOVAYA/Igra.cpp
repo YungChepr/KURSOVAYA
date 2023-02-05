@@ -9,6 +9,7 @@ void Igra::rasstanovka(Odnopalybnik* korabli[M], pole* doska)
 	korabli[0]->setpalyba(NEPODBIT);
 	korabli[0]->setkorabl(NEPODBIT);
 	doska->pol[0][0].setklet(KOR);
+	imyapobeditelya = "Не известно";
 };
 
 void Igra::hod(Odnopalybnik* korabli[M], pole* doska, int x, int y)
@@ -37,7 +38,7 @@ void Igra::hod(Odnopalybnik* korabli[M], pole* doska, int x, int y)
 		}
 
 	}
-	doska->resposlxoda = "Попал";
+	doska->resposlxoda = "Убит";
 	//Реализовать проверку результата хода и присвоить resposlxoda 
 	//Сделать массив в экране в результатами "Не попал" "Попал" и "Убил"
 };
@@ -57,3 +58,13 @@ int Igra::konecigry(Odnopalybnik* korabli[M])
 	}
 	
 }
+
+string Igra::getimyapobeditelya()
+{
+	return imyapobeditelya;
+};
+
+void Igra::setimyapobeditelya(string imyapobeditelya)
+{
+	this->imyapobeditelya = imyapobeditelya;
+};

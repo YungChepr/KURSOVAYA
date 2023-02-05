@@ -5,11 +5,13 @@
 #include "Igrok.h"
 #include "Odnopalybnik.h"
 #include "Igra.h"
+#include <conio.h>
 
 using namespace std;
 
 string s1 = "Ivan";
 string s2 = "Maksim";
+
 pole doska1, doska2; //Доски игроков 1 - игрок, 2 - противник
 Odnopalybnik* korabli1[M];
 Odnopalybnik* korabli2[M];
@@ -18,19 +20,21 @@ Odnopalybnik* korabli2[M];
 Ecran ecranchik; 
 Igrok igrok1(s1), igrok2(s2);
 Igra Morskoyboy;
-int X, Y,f;
+int X, Y,f,c;
 
 int main()
 {
     setlocale(LC_ALL,"RUS");
     string nachsnaach;
+
     do {
+        //Блок начала игры
         system("cls");
         cout << "Приветсвуем в игре Морской бой!" << endl;
         cout << "Игрок 1: " << s1 << endl;
         cout << "Игрок 2: " << s2 << endl;
 
-        //Блок начала игры
+       
         doska1.imyapolya = igrok1.getimya();
         doska2.imyapolya = igrok2.getimya();
         korabli1[0] = new Odnopalybnik();
@@ -38,23 +42,51 @@ int main()
         Morskoyboy.rasstanovka(korabli1, &doska1);
         Morskoyboy.rasstanovka(korabli2, &doska2);
 
-        ecranchik.prorisovka(&doska1);
-        ecranchik.prorisovka(&doska2);
+        ecranchik.prorisovkapolya(&doska1);
+        ecranchik.prorisovkapolya(&doska2);
+        
         //Решить кто первый ходит
-         
+        cout << endl;
+        cout << "Первым ходит игрок " << s1 << endl;
+        cout << "Нажмите любую клавишу... ";
+        c=_getch();
+        
+
         //Блок хода игры
         do {
+            system("cls");
             
             igrok1.vystrel(&X,&Y);
-            Morskoyboy.hod(korabli1, &doska1, X, Y);
+            Morskoyboy.hod(korabli2, &doska2, X, Y);
 
-            ecranchik.prorisovka(&doska1);
-            ecranchik.prorisovka(&doska2);
+            ecranchik.prorisovkashapki(&doska1);
+            ecranchik.prorisovkapolya(&doska1);
+            ecranchik.prorisovkapolya(&doska2);
+            ecranchik.prorisovkapodvala(&doska2);
+         
 
-            f = Morskoyboy.konecigry(korabli1);//1 - если игры продолэается, 0 - если закончилась
+            f = Morskoyboy.konecigry(korabli2);//1 - если игры продолжается, 0 - если закончилась
+            if (f == 0)
+            {
+                Morskoyboy.setimyapobeditelya(s1);
+            }
+
+            cout << "Следующий ход... "; //Задержка после каждого хода
+            c = _getch();
+
         } while (f);
+        
+        
 
         //Блок конца игры
+        system("cls");
+        ecranchik.prorisovkapolya(&doska1);
+        ecranchik.prorisovkapolya(&doska2);
+       
+        cout << "Победил игрок: " << Morskoyboy.getimyapobeditelya() << endl << endl;
+
+        
+          
         cout << "Если вы хотите закончить игру введите 1" << endl;
         cout << "Если вы хотите начать игру заново введите любой символ" << endl;
         cout << "> " ;

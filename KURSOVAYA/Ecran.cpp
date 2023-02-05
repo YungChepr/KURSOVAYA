@@ -6,9 +6,12 @@ const string Ecran::bykvi[10] = { "a ","b ","c ","d ","e ","f ","g ","h ","j ","
 
 const string OTST = "          "; //Отступ при печати новой строчки 5 пробелов
 
+void Ecran::prorisovkashapki(pole* doska)
+{
+	
+}
 
-
-void Ecran::prorisovka(pole* doska)
+void Ecran::prorisovkapolya(pole* doska)
 {
 
 	int i,j; //Счетчик
@@ -17,7 +20,6 @@ void Ecran::prorisovka(pole* doska)
 	cout << endl << endl << endl;
 	cout << OTST << "Игрок: " << doska->imyapolya << endl;
 	cout << endl;
-	
 
 	//Вывод основного поля
 	cout << OTST << "  " << "1 2 3 4 5 6 7 8 9 10" << endl;
@@ -33,10 +35,14 @@ void Ecran::prorisovka(pole* doska)
 		cout << endl;
 	}
 	cout << OTST << "  " << "1 2 3 4 5 6 7 8 9 10" << endl;
+};
 
+void Ecran::prorisovkapodvala(pole* doska)
+{
 	//Вывод подвала
 	cout << endl;
-	cout << OTST  << "Текущий ход: " << doska->koorposlxoda << endl;
-	cout << OTST  << "Результат:   " << doska->resposlxoda << endl;
+	cout << OTST << "Ходит игрок: " << doska->imyapolya << endl;
+	cout << OTST << "Текущий ход: " << doska->koorposlxoda << endl;
+	cout << OTST << "Результат:   " << doska->resposlxoda << endl;
 	cout << endl;
-};
+}
