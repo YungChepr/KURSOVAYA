@@ -1,6 +1,6 @@
 #include "Ecran.h"
 
-const string Ecran::symvoli[4] = { "  ","• ","+ ","x " }; //Символы соответсвующие состояниям клеток поля
+const string Ecran::symvoli[4] = { "  ","· ","+ ","x " }; //Символы соответсвующие состояниям клеток поля
 
 const string Ecran::bykvi[10] = { "a ","b ","c ","d ","e ","f ","g ","h ","j ","k " }; //Символы соответсвующие координатам по Y
 
@@ -8,7 +8,7 @@ const string OTST = "          "; //Отступ при печати новой строчки 5 пробелов
 
 void Ecran::prorisovkashapki(pole* doska)
 {
-	
+	cout << endl << endl << endl;
 }
 
 void Ecran::prorisovkapolya(pole* doska)
@@ -17,7 +17,8 @@ void Ecran::prorisovkapolya(pole* doska)
 	int i,j; //Счетчик
 
 	//Вывод шапки
-	cout << endl << endl << endl;
+	cout << endl << endl;
+
 	cout << OTST << "Игрок: " << doska->imyapolya << endl;
 	cout << endl;
 
@@ -40,8 +41,8 @@ void Ecran::prorisovkapolya(pole* doska)
 void Ecran::prorisovkapodvala(pole* doska)
 {
 	//Вывод подвала
-	cout << endl;
-	cout << OTST << "Ходит игрок: " << doska->imyapolya << endl;
+	cout << endl << endl << endl << endl;
+	cout << OTST << "Текущий ход игрока: " << doska->imyapolya << endl;
 	cout << OTST << "Текущий ход: " << doska->koorposlxoda << endl;
 	cout << OTST << "Результат:   " << doska->resposlxoda << endl;
 	cout << endl;

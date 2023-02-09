@@ -7,7 +7,7 @@ private:
 	string imya;
 public:
 	Igrok(string imya);
-	void vystrel(int* x, int* y);
+	void vystrel(int* x, int* y,int stenchik);
 	string getimya();
 	
 };

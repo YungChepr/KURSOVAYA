@@ -46,7 +46,7 @@ int main()
         ecranchik.prorisovkapolya(&doska2);
         
         //Решить кто первый ходит
-        cout << endl;
+        cout << endl << endl << endl << endl;
         cout << "Первым ходит игрок " << s1 << endl;
         cout << "Нажмите любую клавишу... ";
         c=_getch();
@@ -55,21 +55,40 @@ int main()
         //Блок хода игры
         do {
             system("cls");
-            
-            igrok1.vystrel(&X,&Y);
-            Morskoyboy.hod(korabli2, &doska2, X, Y);
-
-            ecranchik.prorisovkashapki(&doska1);
-            ecranchik.prorisovkapolya(&doska1);
-            ecranchik.prorisovkapolya(&doska2);
-            ecranchik.prorisovkapodvala(&doska2);
-         
-
-            f = Morskoyboy.konecigry(korabli2);//1 - если игры продолжается, 0 - если закончилась
-            if (f == 0)
+            if ((Morskoyboy.scetchikXodov % 2) == 0)
             {
-                Morskoyboy.setimyapobeditelya(s1);
+                igrok1.vystrel(&X, &Y, Morskoyboy.scetchikXodov);
+                Morskoyboy.hod(korabli2, &doska2, X, Y);
+
+                ecranchik.prorisovkashapki(&doska1);
+                ecranchik.prorisovkapolya(&doska1);
+                ecranchik.prorisovkapolya(&doska2);
+                ecranchik.prorisovkapodvala(&doska2);
+
+                f = Morskoyboy.konecigry(korabli2);//1 - если игры продолжается, 0 - если закончилась
+                if (f == 0)
+                {
+                    Morskoyboy.setimyapobeditelya(s1);
+                }
             }
+
+            else
+            {
+                igrok2.vystrel(&X, &Y, Morskoyboy.scetchikXodov);
+                Morskoyboy.hod(korabli1, &doska1, X, Y);
+
+                ecranchik.prorisovkashapki(&doska1);
+                ecranchik.prorisovkapolya(&doska1);
+                ecranchik.prorisovkapolya(&doska2);
+                ecranchik.prorisovkapodvala(&doska1);
+
+                f = Morskoyboy.konecigry(korabli1);//1 - если игры продолжается, 0 - если закончилась
+                if (f == 0)
+                {
+                    Morskoyboy.setimyapobeditelya(s2);
+                }
+            }
+            Morskoyboy.scetchikXodov = Morskoyboy.scetchikXodov + 1;
 
             cout << "Следующий ход... "; //Задержка после каждого хода
             c = _getch();

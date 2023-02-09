@@ -12,4 +12,6 @@ public:
 	int konecigry(Odnopalybnik* korabli[M]);
 	string getimyapobeditelya();
 	void setimyapobeditelya(string imyapobeditelya);
+	static int scetchikXodov;
+	
 };

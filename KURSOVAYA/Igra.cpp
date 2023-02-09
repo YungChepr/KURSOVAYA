@@ -22,10 +22,11 @@ void Igra::hod(Odnopalybnik* korabli[M], pole* doska, int x, int y)
 	if (per == PUST)
 	{
 		doska->pol[x][y].setklet(PUSTPOD);
+		doska->resposlxoda = "Мимо";
 	}
 	if ((per == PUSTPOD) || (per == KORPOD))
 	{
-
+		doska->resposlxoda = "Тоже мимо";
 	}
 	if (per == KOR)
 	{
@@ -35,12 +36,11 @@ void Igra::hod(Odnopalybnik* korabli[M], pole* doska, int x, int y)
 		{
 			korabli[0]->setpalyba(PODBIT);
 			korabli[0]->setkorabl(PODBIT);
+			doska->resposlxoda = "Убит";
 		}
 
 	}
-	doska->resposlxoda = "Убит";
-	//Реализовать проверку результата хода и присвоить resposlxoda 
-	//Сделать массив в экране в результатами "Не попал" "Попал" и "Убил"
+	
 };
 
 int Igra::konecigry(Odnopalybnik* korabli[M])
@@ -68,3 +68,5 @@ void Igra::setimyapobeditelya(string imyapobeditelya)
 {
 	this->imyapobeditelya = imyapobeditelya;
 };
+
+int Igra::scetchikXodov = 0; //Выделяем место в памяти для static переменной и инициализируем её
