@@ -13,5 +13,7 @@ public:
 	string getimyapobeditelya();
 	void setimyapobeditelya(string imyapobeditelya);
 	static int scetchikXodov;
+	static string igrokperviy;
+	static string igrokvtoroy;
 	
 };

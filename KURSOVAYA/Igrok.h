@@ -5,9 +5,10 @@ class Igrok
 {
 private:
 	string imya;
+	sostoyanie masproverky[N][N]; //Хранит сделанные выстрелы игрока
 public:
 	Igrok(string imya);
-	void vystrel(int* x, int* y,int stenchik);
+	void vystrel(int* x, int* y);
 	string getimya();
 	
 };

@@ -5,6 +5,7 @@ using namespace std;
 
 
 const int N = 10; //Размерность поля при отчете с 1
+const int ZAD = 10;//Задержка - 500 милисекунд
 
 const int kolodno = 4; //Количество однопалубников
 const int koldvy = 3; //Количество двупалубников

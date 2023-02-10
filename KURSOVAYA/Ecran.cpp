@@ -36,14 +36,14 @@ void Ecran::prorisovkapolya(pole* doska)
 		cout << endl;
 	}
 	cout << OTST << "  " << "1 2 3 4 5 6 7 8 9 10" << endl;
+	cout << endl << endl << endl << endl;
 };
 
 void Ecran::prorisovkapodvala(pole* doska)
 {
 	//Вывод подвала
-	cout << endl << endl << endl << endl;
-	cout << OTST << "Текущий ход игрока: " << doska->imyapolya << endl;
-	cout << OTST << "Текущий ход: " << doska->koorposlxoda << endl;
+	cout << OTST << "Ход: " << doska->koorposlxoda << endl;
 	cout << OTST << "Результат:   " << doska->resposlxoda << endl;
+	cout << OTST << "Следующий ход игрока: " << doska->imyapolya << endl;
 	cout << endl;
 }

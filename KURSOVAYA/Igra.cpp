@@ -70,3 +70,5 @@ void Igra::setimyapobeditelya(string imyapobeditelya)
 };
 
 int Igra::scetchikXodov = 0; //Выделяем место в памяти для static переменной и инициализируем её
+string Igra::igrokperviy;
+string Igra::igrokvtoroy;

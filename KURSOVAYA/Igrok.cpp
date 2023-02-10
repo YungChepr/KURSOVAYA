@@ -2,29 +2,26 @@
 Igrok::Igrok(string imya)
 {
 	this->imya = imya;
+	int i,j;
+	for (i = 0; i < N; i++) //»нициализаци€ массива сделанных выстрелов
+	{
+		for (j = 0; j < N; j++)
+		{
+			masproverky[i][j] = PUST;
+		}
+	}
 };
 
-void Igrok::vystrel(int*x, int*y, int stenchik) //√енераци€ пол€ в которое игрок стрел€ет
+void Igrok::vystrel(int*x, int*y) //√енераци€ пол€ в которое игрок стрел€ет
 {
-	if (stenchik == 0) 
+	do 
 	{
-		*(x) = 2;
-		*(y) = 2;
-	}
-	if (stenchik == 1)
-	{
-		*(x) = 1;
-		*(y) = 1;
-	}
-	if (stenchik == 2)
-	{
-		*(x) = 0;
-		*(y) = 0;
-	}
-	stenchik = stenchik + 1;
-	//Ќе завершено!!!
-	//«аменить на генерацию случайных координат
-	//—десь надо провер€ть не попал ли € в поле, в которое уже стрел€л
+		*(x) = (int)((rand() / 32767.0) * (N - 1));
+		*(y) = (int)((rand() / 32767.0) * (N - 1));
+	} 
+	while (masproverky[*(x)][*(y)] == PUSTPOD);
+
+	masproverky[*(x)][*(y)] = PUSTPOD;
 };
 
 string Igrok::getimya()

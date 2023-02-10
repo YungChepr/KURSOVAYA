@@ -6,6 +6,7 @@
 #include "Odnopalybnik.h"
 #include "Igra.h"
 #include <conio.h>
+#include <windows.h>
 
 using namespace std;
 
@@ -26,6 +27,8 @@ int main()
 {
     setlocale(LC_ALL,"RUS");
     string nachsnaach;
+    //Инициализация гинератора случайных чисел
+    srand(time(NULL));
 
     do {
         //Блок начала игры
@@ -33,7 +36,8 @@ int main()
         cout << "Приветсвуем в игре Морской бой!" << endl;
         cout << "Игрок 1: " << s1 << endl;
         cout << "Игрок 2: " << s2 << endl;
-
+        Igra::igrokperviy = s1;
+        Igra::igrokvtoroy = s2;
        
         doska1.imyapolya = igrok1.getimya();
         doska2.imyapolya = igrok2.getimya();
@@ -57,12 +61,13 @@ int main()
             system("cls");
             if ((Morskoyboy.scetchikXodov % 2) == 0)
             {
-                igrok1.vystrel(&X, &Y, Morskoyboy.scetchikXodov);
+                igrok1.vystrel(&X, &Y);
                 Morskoyboy.hod(korabli2, &doska2, X, Y);
 
                 ecranchik.prorisovkashapki(&doska1);
                 ecranchik.prorisovkapolya(&doska1);
                 ecranchik.prorisovkapolya(&doska2);
+                cout << "          " << "Этот ход сделал игрок: " << Igra::igrokperviy << endl;
                 ecranchik.prorisovkapodvala(&doska2);
 
                 f = Morskoyboy.konecigry(korabli2);//1 - если игры продолжается, 0 - если закончилась
@@ -74,12 +79,13 @@ int main()
 
             else
             {
-                igrok2.vystrel(&X, &Y, Morskoyboy.scetchikXodov);
+                igrok2.vystrel(&X, &Y);
                 Morskoyboy.hod(korabli1, &doska1, X, Y);
 
                 ecranchik.prorisovkashapki(&doska1);
                 ecranchik.prorisovkapolya(&doska1);
                 ecranchik.prorisovkapolya(&doska2);
+                cout << "          " << "Этот ход сделал игрок: " << Igra::igrokvtoroy << endl;
                 ecranchik.prorisovkapodvala(&doska1);
 
                 f = Morskoyboy.konecigry(korabli1);//1 - если игры продолжается, 0 - если закончилась
@@ -91,7 +97,8 @@ int main()
             Morskoyboy.scetchikXodov = Morskoyboy.scetchikXodov + 1;
 
             cout << "Следующий ход... "; //Задержка после каждого хода
-            c = _getch();
+            Sleep(ZAD); //Задержка перед следующим ходом
+            //c = _getch();
 
         } while (f);
         
