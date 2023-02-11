@@ -16,8 +16,8 @@ void Igrok::vystrel(int*x, int*y) //Генерация поля в которое игрок стреляет
 {
 	do 
 	{
-		*(x) = (int)((rand() / 32767.0) * (N - 1));
-		*(y) = (int)((rand() / 32767.0) * (N - 1));
+		*(x) = (int)((rand() / 32767.0) * (N));
+		*(y) = (int)((rand() / 32767.0) * (N));
 	} 
 	while (masproverky[*(x)][*(y)] == PUSTPOD);
 

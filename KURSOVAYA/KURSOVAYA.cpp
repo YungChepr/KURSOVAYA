@@ -21,7 +21,7 @@ Odnopalybnik* korabli2[M];
 Ecran ecranchik; 
 Igrok igrok1(s1), igrok2(s2);
 Igra Morskoyboy;
-int X, Y,f,c;
+int X, Y,f,c,i;
 
 int main()
 {
@@ -41,8 +41,11 @@ int main()
        
         doska1.imyapolya = igrok1.getimya();
         doska2.imyapolya = igrok2.getimya();
-        korabli1[0] = new Odnopalybnik();
-        korabli2[0] = new Odnopalybnik();
+        for (i < 0; i < N; i++)
+        {
+            korabli1[i] = new Odnopalybnik();
+            korabli2[i] = new Odnopalybnik();
+        }
         Morskoyboy.rasstanovka(korabli1, &doska1);
         Morskoyboy.rasstanovka(korabli2, &doska2);
 

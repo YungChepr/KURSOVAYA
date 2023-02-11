@@ -4,16 +4,102 @@
 
 void Igra::rasstanovka(Odnopalybnik* korabli[M], pole* doska)
 {
+	int i,x,y;
+	for (i = 0; i < M; i++)
+	{
+		do
+		{
+			x = (int)((rand() / 32767.0) * (N));
+			y = (int)((rand() / 32767.0) * (N));
 
-	korabli[0]->setkoordinata(0, 0);
-	korabli[0]->setpalyba(NEPODBIT);
-	korabli[0]->setkorabl(NEPODBIT);
-	doska->pol[0][0].setklet(KOR);
+			
+			//Проверяем поле чтобы в нем не было другого корабля
+			if (doska->pol[x][y].getklet() == KOR)
+			{
+				continue;
+			}
+
+			//Работает только для однопалубников!!!
+			//Проверяем соседние поля на наличие в них корабля, но до этого чтобы они не выходили за рамки массива
+			if((x + 1) < N)
+			{
+				if (doska->pol[x + 1][y].getklet() == KOR)
+				{
+					continue;
+				}
+			}
+			
+			if (((x + 1) < N) && ((y + 1) < N))
+			{
+				if (doska->pol[x + 1][y + 1].getklet() == KOR)
+				{
+					continue;
+				}
+			}
+
+			if ((y + 1) <= N)
+			{
+				if (doska->pol[x][y + 1].getklet() == KOR)
+				{
+					continue;
+				}
+			}
+
+			if (((x - 1) >= 0) && ((y + 1) < N))
+			{
+				if (doska->pol[x - 1][y + 1].getklet() == KOR)
+				{
+					continue;
+				}
+			}
+
+			if (((x - 1) >= 0))
+			{
+				if (doska->pol[x - 1][y].getklet() == KOR)
+				{
+					continue;
+				}
+			}
+
+			if (((x - 1) >= 0) && ((y - 1) >= 0))
+			{
+				if (doska->pol[x - 1][y - 1].getklet() == KOR)
+				{
+					continue;
+				}
+			}
+
+			if (((y - 1) >= 0))
+			{
+				if (doska->pol[x][y - 1].getklet() == KOR)
+				{
+					continue;
+				}
+			}
+
+			if (((x + 1) < N) && ((y - 1) >= 0))
+			{
+				if (doska->pol[x + 1][y - 1].getklet() == KOR)
+				{
+					continue;
+				}
+			}
+
+			//Если пройдены все этарации цикла и дошли до этого места значит корабль можно поставить
+			break;
+		} while (1);
+
+		korabli[i]->setkoordinata(x, y);
+		korabli[i]->setpalyba(NEPODBIT);
+		korabli[i]->setkorabl(NEPODBIT);
+		doska->pol[x][y].setklet(KOR);
+	}
 	imyapobeditelya = "Не известно";
 };
 
 void Igra::hod(Odnopalybnik* korabli[M], pole* doska, int x, int y)
 {
+	int i;
 	sostoyanie per;//Дополнительная переменная
 
 	doska->koorposlxoda = Ecran::bykvi[x] + to_string(y + 1);
@@ -31,12 +117,15 @@ void Igra::hod(Odnopalybnik* korabli[M], pole* doska, int x, int y)
 	if (per == KOR)
 	{
 		doska->pol[x][y].setklet(KORPOD);
-		//Сдесь мы должны пройти по массиву кораблей, но т.к. у нас один корабль то этого не сделали
-		if ( ( x== korabli[0]->getkoordinataX() ) && (y == korabli[0]->getkoordinataY() ) )
+		for (i = 0; i < M; i++)
 		{
-			korabli[0]->setpalyba(PODBIT);
-			korabli[0]->setkorabl(PODBIT);
-			doska->resposlxoda = "Убит";
+			if ((x == korabli[i]->getkoordinataX()) && (y == korabli[i]->getkoordinataY()))
+			{
+				//Работает только для однопалубного корабля
+				korabli[i]->setpalyba(PODBIT);
+				korabli[i]->setkorabl(PODBIT);
+				doska->resposlxoda = "Убит";
+			}
 		}
 
 	}
@@ -45,17 +134,18 @@ void Igra::hod(Odnopalybnik* korabli[M], pole* doska, int x, int y)
 
 int Igra::konecigry(Odnopalybnik* korabli[M])
 {
-	//Так как один элемент в массиве цикла for пока нету
-	if (korabli[0]->getkorabl() == NEPODBIT)
+	int i;
+
+	for (i = 0; i < M; i++)
 	{
-		//Продолжаем игру
-		return 1;
+		if (korabli[i]->getkorabl() == NEPODBIT)
+		{
+			//Продолжаем игру
+			return 1;
+		}
 	}
-	else 
-	{
-		//Закончить игру
-		return 0;
-	}
+	//Закончить игру
+	return 0;
 	
 }
 

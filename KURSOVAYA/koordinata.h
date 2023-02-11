@@ -15,5 +15,4 @@ public:
 
 	int getkoordinataX(); //Возращает X	
 	int getkoordinataY(); //Возращает Y для вывода на экран
-	
 };

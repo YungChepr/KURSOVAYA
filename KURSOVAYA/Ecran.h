@@ -11,4 +11,3 @@ public:
 	void prorisovkapolya(pole* doska);
 	void prorisovkapodvala(pole* doska);
 };
-
