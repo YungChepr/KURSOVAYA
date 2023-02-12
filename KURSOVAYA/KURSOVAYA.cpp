@@ -4,6 +4,7 @@
 #include "Ecran.h"
 #include "Igrok.h"
 #include "Odnopalybnik.h"
+#include "Mnogopalybnik.h"
 #include "Igra.h"
 #include <conio.h>
 #include <windows.h>
@@ -41,11 +42,30 @@ int main()
        
         doska1.imyapolya = igrok1.getimya();
         doska2.imyapolya = igrok2.getimya();
-        for (i < 0; i < N; i++)
+
+        //Блок создания кораблей
+        for (i = 0; i < kolodno; i++)
         {
             korabli1[i] = new Odnopalybnik();
             korabli2[i] = new Odnopalybnik();
         }
+        for (i = 0; i < koldvy; i++)
+        {
+            korabli1[i + kolodno] = new Mnogopalybnik(2);
+            korabli2[i + kolodno] = new Mnogopalybnik(2);
+        } 
+        for (i = 0; i < koltre; i++)
+        {
+            korabli1[i + kolodno + koldvy] = new Mnogopalybnik(3);
+            korabli2[i + kolodno + koldvy] = new Mnogopalybnik(3);
+        }
+        for (i = 0; i < kolchetire; i++)
+        {
+            korabli1[i + kolodno + koldvy + koltre] = new Mnogopalybnik(4);
+            korabli2[i + kolodno + koldvy + koltre] = new Mnogopalybnik(4);
+        }
+
+
         Morskoyboy.rasstanovka(korabli1, &doska1);
         Morskoyboy.rasstanovka(korabli2, &doska2);
 

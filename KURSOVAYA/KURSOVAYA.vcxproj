@@ -133,6 +133,7 @@
     <ClCompile Include="kletka.cpp" />
     <ClCompile Include="koordinata.cpp" />
     <ClCompile Include="KURSOVAYA.cpp" />
+    <ClCompile Include="Mnogopalybnik.cpp" />
     <ClCompile Include="Odnopalybnik.cpp" />
     <ClCompile Include="pole.cpp" />
   </ItemGroup>
@@ -143,6 +144,7 @@
     <ClInclude Include="Igrok.h" />
     <ClInclude Include="kletka.h" />
     <ClInclude Include="koordinata.h" />
+    <ClInclude Include="Mnogopalybnik.h" />
     <ClInclude Include="Odnopalybnik.h" />
     <ClInclude Include="pole.h" />
   </ItemGroup>

@@ -2,6 +2,7 @@
 Odnopalybnik::Odnopalybnik() 
 {
 	palyba = NEUKAZANO;
+	korabl = NEUKAZANO;
 };
 
 sost Odnopalybnik::getpalyba()

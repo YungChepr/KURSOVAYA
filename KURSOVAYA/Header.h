@@ -9,9 +9,9 @@ const int ZAD = 10;//Задержка - 500 милисекунд
 
 const int kolodno = 4; //Количество однопалубников
 const int koldvy = 3; //Количество двупалубников
-const int kolnre = 2; //Количество трехпалубников
+const int koltre = 2; //Количество трехпалубников
 const int kolchetire = 1; //Количество четырехпалубников
-const int M = kolodno + koldvy + kolnre + kolchetire; //Количество кораблей у игрока
+const int M = kolodno + koldvy + koltre + kolchetire; //Количество кораблей у игрока
 
 enum sostoyanie //Состояние поля
 {

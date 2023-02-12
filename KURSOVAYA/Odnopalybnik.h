@@ -8,8 +8,8 @@ private:
 	sost korabl; //Хранит информацию о состоянии корабля
 public:
 	Odnopalybnik();
-	sost getpalyba();
-	void setpalyba(sost p);
-	sost getkorabl();
-	void setkorabl(sost k);
+	virtual sost getpalyba();
+	virtual void setpalyba(sost p);
+	virtual sost getkorabl();
+	virtual void setkorabl(sost k);
 };

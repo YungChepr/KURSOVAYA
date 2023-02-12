@@ -89,7 +89,7 @@ void Igra::rasstanovka(Odnopalybnik* korabli[M], pole* doska)
 			break;
 		} while (1);
 
-		korabli[i]->setkoordinata(x, y);
+		korabli[i]->setkoordinata(x, y); //Полиморфизм
 		korabli[i]->setpalyba(NEPODBIT);
 		korabli[i]->setkorabl(NEPODBIT);
 		doska->pol[x][y].setklet(KOR);
