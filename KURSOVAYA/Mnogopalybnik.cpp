@@ -52,3 +52,14 @@ void Mnogopalybnik::setkorabl(sost k)
 {
 	Odnopalybnik::setkorabl(k);
 };
+
+void Mnogopalybnik::ustanovkakorablya(pole* doska)
+{
+	Odnopalybnik::ustanovkakorablya(doska);
+};
+
+sost Mnogopalybnik::proverkakorablya(int x, int y)//Спрашивает корабль попали ли в него
+{
+	return Odnopalybnik::proverkakorablya(x,y);
+	
+}; 
