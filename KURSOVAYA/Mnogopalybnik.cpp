@@ -32,6 +32,7 @@ Mnogopalybnik::Mnogopalybnik(int k)
 		cout << endl << "Ќе верное значение параметра k, создан двухпалбуный корабль!!!" << endl;
 	}
 };
+
 //ѕерекрываю методы однопалубника
 sost Mnogopalybnik::getpalyba()
 {
@@ -55,11 +56,135 @@ void Mnogopalybnik::setkorabl(sost k)
 
 void Mnogopalybnik::ustanovkakorablya(pole* doska)
 {
-	Odnopalybnik::ustanovkakorablya(doska);
+	int x,y, xk[4], yk[4], napr, kolpopytok,i; //¬ массиве лежит максимум 4 координаты дл€ 4х-палубника
+	
+	kolpopytok = 0;
+	do
+	{
+	//ѕроверка не более 1000 попыток расстановки корабл€
+	kolpopytok = kolpopytok + 1;
+	if (kolpopytok > 1000)
+	{
+		//≈сли сделано 1000 попыток корабль поставить нельз€
+		cout << endl << "ƒостигнуто ограничение количества попыток расстановки корабл€.  орабль поставить не удалось!!!" << endl;
+		break;
+	}
+
+	x = (int)((rand() / 32767.0) * (N));
+	y = (int)((rand() / 32767.0) * (N));
+	napr = (int)((rand() / 32767.0) * (4)); //¬ыбераем одно из 4-х направлений
+
+	for (i = 0; i < kolpalyb; i++)
+	{
+		//ѕровер€ем поле чтобы в нем не было другого корабл€
+		if (doska->pol[x][y].getklet() == KOR)
+		{
+			break;
+		}
+
+		//–аботает только дл€ однопалубников!!!
+		//ѕровер€ем соседние пол€ на наличие в них корабл€, но до этого чтобы они не выходили за рамки массива
+		if ((x + 1) < N)
+		{
+			if (doska->pol[x + 1][y].getklet() == KOR)
+			{
+				break;
+			}
+		}
+
+		if (((x + 1) < N) && ((y + 1) < N))
+		{
+			if (doska->pol[x + 1][y + 1].getklet() == KOR)
+			{
+				break;
+			}
+		}
+
+		if ((y + 1) <= N)
+		{
+			if (doska->pol[x][y + 1].getklet() == KOR)
+			{
+				break;
+			}
+		}
+
+		if (((x - 1) >= 0) && ((y + 1) < N))
+		{
+			if (doska->pol[x - 1][y + 1].getklet() == KOR)
+			{
+				break;
+			}
+		}
+
+		if (((x - 1) >= 0))
+		{
+			if (doska->pol[x - 1][y].getklet() == KOR)
+			{
+				break;
+			}
+		}
+
+		if (((x - 1) >= 0) && ((y - 1) >= 0))
+		{
+			if (doska->pol[x - 1][y - 1].getklet() == KOR)
+			{
+				break;
+			}
+		}
+
+		if (((y - 1) >= 0))
+		{
+			if (doska->pol[x][y - 1].getklet() == KOR)
+			{
+				break;
+			}
+		}
+
+		if (((x + 1) < N) && ((y - 1) >= 0))
+		{
+			if (doska->pol[x + 1][y - 1].getklet() == KOR)
+			{
+				break;
+			}
+		}
+		//—охран€ем подход€щие координаты многопалубника в массив
+		xk[i] = x; 
+		yk[i] = y;
+
+		if (napr == 1)
+		{
+			x = x + 1;
+		}
+		if (napr == 2)
+		{
+			x = x - 1;
+		}
+		if (napr == 3)
+		{
+			y = y + 1;
+		}
+		if (napr == 4)
+		{
+			y = y - 1;
+		}
+	}
+	if (i == kolpalyb)
+	{
+		//≈сли дошел до kolpalyb итерации цикла то удалось поставить корабль
+		break;
+	}
+	} while (1);
+
+	for (i = 0; i < kolpalyb; i++)
+	{
+		bolkorabl[i]->setkoordinata(xk[i], yk[i]); 
+		bolkorabl[i]->setpalyba(NEPODBIT);
+		doska->pol[xk[i]][yk[i]].setklet(KOR);
+	}
+	setkorabl(NEPODBIT);
 };
 
 sost Mnogopalybnik::proverkakorablya(int x, int y)//—прашивает корабль попали ли в него
 {
 	return Odnopalybnik::proverkakorablya(x,y);
-	
 }; 

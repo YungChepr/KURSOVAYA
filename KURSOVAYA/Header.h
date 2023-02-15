@@ -12,6 +12,7 @@ const int koldvy = 3; //Количество двупалубников
 const int koltre = 2; //Количество трехпалубников
 const int kolchetire = 1; //Количество четырехпалубников
 const int M = kolodno + koldvy + koltre + kolchetire; //Количество кораблей у игрока
+const int KOLPOPITOK = 1000;
 
 enum sostoyanie //Состояние поля
 {
