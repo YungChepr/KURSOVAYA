@@ -34,7 +34,7 @@ Mnogopalybnik::Mnogopalybnik(int k)
 };
 
 //ѕерекрываю методы однопалубника
-sost Mnogopalybnik::getpalyba()
+/*sost Mnogopalybnik::getpalyba()
 {
 	return Odnopalybnik::getpalyba();
 };
@@ -43,16 +43,24 @@ void Mnogopalybnik::setpalyba(sost p)
 {
 	Odnopalybnik::setpalyba(p);
 };
-
+*/
 sost Mnogopalybnik::getkorabl()
 {
-	return Odnopalybnik::getkorabl();
+	int i;
+	for (i = 0; i < kolpalyb; i++)
+	{
+		if (bolkorabl[i]->getpalyba() == NEPODBIT)
+		{
+			return NEPODBIT;
+		}
+	}
+	return UBIT;
 };
 
-void Mnogopalybnik::setkorabl(sost k)
+/*void Mnogopalybnik::setkorabl(sost k)
 {
 	Odnopalybnik::setkorabl(k);
-};
+}; */
 
 void Mnogopalybnik::ustanovkakorablya(pole* doska)
 {
@@ -72,7 +80,7 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 
 	x = (int)((rand() / 32767.0) * (N));
 	y = (int)((rand() / 32767.0) * (N));
-	napr = (int)((rand() / 32767.0) * (4)); //¬ыбераем одно из 4-х направлений
+	napr = (int)((rand() / 32767.0) * (3)) + 1; //¬ыбераем одно из 4-х направлений
 
 	for (i = 0; i < kolpalyb; i++)
 	{
@@ -82,7 +90,6 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 			break;
 		}
 
-		//–аботает только дл€ однопалубников!!!
 		//ѕровер€ем соседние пол€ на наличие в них корабл€, но до этого чтобы они не выходили за рамки массива
 		if ((x + 1) < N)
 		{
@@ -90,6 +97,10 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 			{
 				break;
 			}
+		}
+		else
+		{
+			break;
 		}
 
 		if (((x + 1) < N) && ((y + 1) < N))
@@ -99,6 +110,10 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 				break;
 			}
 		}
+		else
+		{
+			break;
+		}
 
 		if ((y + 1) <= N)
 		{
@@ -106,6 +121,10 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 			{
 				break;
 			}
+		}
+		else
+		{
+			break;
 		}
 
 		if (((x - 1) >= 0) && ((y + 1) < N))
@@ -115,6 +134,10 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 				break;
 			}
 		}
+		else
+		{
+			break;
+		}
 
 		if (((x - 1) >= 0))
 		{
@@ -122,6 +145,10 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 			{
 				break;
 			}
+		}
+		else
+		{
+			break;
 		}
 
 		if (((x - 1) >= 0) && ((y - 1) >= 0))
@@ -131,6 +158,10 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 				break;
 			}
 		}
+		else
+		{
+			break;
+		}
 
 		if (((y - 1) >= 0))
 		{
@@ -139,6 +170,10 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 				break;
 			}
 		}
+		else
+		{
+			break;
+		}
 
 		if (((x + 1) < N) && ((y - 1) >= 0))
 		{
@@ -146,6 +181,10 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 			{
 				break;
 			}
+		}
+		else
+		{
+			break;
 		}
 		//—охран€ем подход€щие координаты многопалубника в массив
 		xk[i] = x; 
@@ -181,10 +220,26 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 		bolkorabl[i]->setpalyba(NEPODBIT);
 		doska->pol[xk[i]][yk[i]].setklet(KOR);
 	}
-	setkorabl(NEPODBIT);
+	//setkorabl(NEPODBIT);
 };
 
 sost Mnogopalybnik::proverkakorablya(int x, int y)//—прашивает корабль попали ли в него
 {
-	return Odnopalybnik::proverkakorablya(x,y);
+	int i;
+	sost res = NEPODBIT;
+	for (i = 0; i < kolpalyb; i++)
+	{
+		if ((x == bolkorabl[i]->getkoordinataX()) && (y == bolkorabl[i]->getkoordinataY()))
+		{
+			bolkorabl[i]->setpalyba(PODBIT);
+			res = PODBIT;
+		}
+	}
+
+	if (getkorabl() == UBIT)
+	{
+		res = UBIT;
+	}
+	
+	return res;
 }; 

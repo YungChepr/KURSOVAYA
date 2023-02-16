@@ -6,8 +6,8 @@
 class Odnopalybnik: public kletka
 {
 private:
-	sost palyba; //Хранит информацию о состоянии палубы корабля
-	sost korabl; //Хранит информацию о состоянии корабля
+	sost palyba;//Хранит информацию о состоянии палубы корабля
+	//sost korabl; //Хранит информацию о состоянии корабля
 public:
 	Odnopalybnik();
 	virtual void ustanovkakorablya(pole* doska); //Установка на поле однопалубника

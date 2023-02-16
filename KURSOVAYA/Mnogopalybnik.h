@@ -9,10 +9,10 @@ private:
 public:
 	Mnogopalybnik(); //По умолчанию создается двухпалубный корабль
 	Mnogopalybnik(int k); //Конструктор с параметров количество палуб
-	sost getpalyba(); //Перекрыл методы однопалубника
-	void setpalyba(sost p);
+	//sost getpalyba(); //Перекрыл методы однопалубника
+	//void setpalyba(sost p);
 	sost getkorabl();
-	void setkorabl(sost k);
+	//void setkorabl(sost k);
 	void ustanovkakorablya(pole* doska); //Установка на поле многопалубника
 	sost proverkakorablya(int x, int y); //Спрашивает корабль попали ли в него
 };

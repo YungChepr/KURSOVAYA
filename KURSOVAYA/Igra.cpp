@@ -5,7 +5,7 @@
 void Igra::rasstanovka(Odnopalybnik* korabli[M], pole* doska)
 {
 	int i;
-	for (i = 0; i < M; i++)
+	for (i = (M-1); i >=0; i--)
 	{
 		korabli[i]->ustanovkakorablya(doska);
 	}

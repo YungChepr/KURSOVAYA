@@ -2,7 +2,7 @@
 Odnopalybnik::Odnopalybnik() 
 {
 	palyba = NEUKAZANO;
-	korabl = NEUKAZANO;
+	//korabl = NEUKAZANO;
 };
 
 sost Odnopalybnik::getpalyba()
@@ -17,12 +17,12 @@ void Odnopalybnik::setpalyba(sost p)
 
 sost Odnopalybnik::getkorabl()
 {
-	return korabl;
+	return palyba;
 };
 
 void Odnopalybnik::setkorabl(sost k)
 {
-	korabl = k;
+	palyba = k;
 };
 
  void Odnopalybnik::ustanovkakorablya(pole* doska)
@@ -122,7 +122,7 @@ void Odnopalybnik::setkorabl(sost k)
 	 if ((x == getkoordinataX()) && (y == getkoordinataY()))
 	 { 
 		 setpalyba(PODBIT);
-		 setkorabl(PODBIT);
+		 //setkorabl(PODBIT);
 		 return UBIT;
 
 	 }
