@@ -84,7 +84,7 @@ int main()
             system("cls");
             if ((Morskoyboy.scetchikXodov % 2) == 0)
             {
-                igrok1.vystrel(&X, &Y);
+                igrok1.vystrel(&X, &Y, &doska2);
                 Morskoyboy.hod(korabli2, &doska2, X, Y);
 
                 ecranchik.prorisovkashapki(&doska1);
@@ -102,7 +102,7 @@ int main()
 
             else
             {
-                igrok2.vystrel(&X, &Y);
+                igrok2.vystrel(&X, &Y, &doska1);
                 Morskoyboy.hod(korabli1, &doska1, X, Y);
 
                 ecranchik.prorisovkashapki(&doska1);

@@ -1,4 +1,5 @@
 #include "Igrok.h"
+#include "pole.h"
 Igrok::Igrok(string imya)
 {
 	this->imya = imya;
@@ -12,16 +13,55 @@ Igrok::Igrok(string imya)
 	}
 };
 
-void Igrok::vystrel(int*x, int*y) //Генерация поля в которое игрок стреляет
-{
-	do 
-	{
-		*(x) = (int)((rand() / 32767.0) * (N));
-		*(y) = (int)((rand() / 32767.0) * (N));
-	} 
-	while (masproverky[*(x)][*(y)] == PUSTPOD);
+void Igrok::vystrel(int*x, int*y, pole* doska) //Генерация поля в которое игрок стреляет
+{   //Не завершено нужно вынести локальные переменные в класс
+	int xnach, ynach, xk[4], yk[4], napr,fdobit;
+	sost resposxoda;
 
-	masproverky[*(x)][*(y)] = PUSTPOD;
+	if (doska->resposlxoda == "Попал")
+	{
+		fdobit = 1;
+		
+	}
+	
+	if (fdobit == 1) //Пока флажок стоит надо что-то делать
+	{
+		/*//Выбираем направление
+		napr = (int)((rand() / 32767.0) * (3)) + 1; //Выбераем одно из 4-х направлений
+		//Должно быть сложнее
+		if (napr == 1)
+		{
+			xk = xnach + 1;
+		}
+		if (napr == 2)
+		{
+			xk = xnach - 1;
+		}
+		if (napr == 3)
+		{
+			yk = ynach + 1;
+		}
+		if (napr == 4)
+		{
+			yk = ynach - 1;
+		}
+		*/
+	}
+	else
+	{
+		do 
+		{
+			*(x) = (int)((rand() / 32767.0) * (N));
+			*(y) = (int)((rand() / 32767.0) * (N));
+		} 
+		while (masproverky[*(x)][*(y)] == PUSTPOD);
+
+		masproverky[*(x)][*(y)] = PUSTPOD;
+		//Хранят результата последнего хода
+		xnach = *(x);
+		ynach = *(y);
+
+	}
 };
 
 string Igrok::getimya()

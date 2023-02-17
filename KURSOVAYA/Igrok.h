@@ -8,7 +8,7 @@ private:
 	sostoyanie masproverky[N][N]; //Хранит сделанные выстрелы игрока
 public:
 	Igrok(string imya);
-	void vystrel(int* x, int* y);
+	void vystrel(int* x, int* y, pole* doska);
 	string getimya();
 	
 };
