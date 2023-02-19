@@ -39,17 +39,19 @@ void Igra::hod(Odnopalybnik* korabli[M], pole* doska, int x, int y)
 			if (vspper == UBIT)
 			{
 				doska->resposlxoda = "Убит";
+				return;
 			}
 			if (vspper == PODBIT)
 			{
 				doska->resposlxoda = "Попал";
+				return;
 			}
 			if (vspper == NEPODBIT)
 			{
 				//Ничего не делает
 			}
 		}
-
+		cout << endl << "ПОДБИТЫЙ КОРАБЛЬ НЕ НАЙДЕН" << endl;
 	}
 	
 };

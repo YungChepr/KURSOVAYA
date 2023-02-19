@@ -120,8 +120,8 @@ int main()
             Morskoyboy.scetchikXodov = Morskoyboy.scetchikXodov + 1;
 
             cout << "Следующий ход... "; //Задержка после каждого хода
-            Sleep(ZAD); //Задержка перед следующим ходом
-            //c = _getch();
+            //Sleep(ZAD); //Задержка перед следующим ходом
+             c = _getch();
 
         } while (f);
         

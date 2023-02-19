@@ -54,7 +54,7 @@ sost Mnogopalybnik::getkorabl()
 			return NEPODBIT;
 		}
 	}
-	return UBIT;
+ 	return UBIT;
 };
 
 /*void Mnogopalybnik::setkorabl(sost k)
@@ -115,7 +115,7 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 			break;
 		}
 
-		if ((y + 1) <= N)
+		if ((y + 1) < N)
 		{
 			if (doska->pol[x][y + 1].getklet() == KOR)
 			{

@@ -32,37 +32,49 @@ void Igrok::vystrel(int* x, int* y, pole* doska) //Генерация поля в которое игро
 	{
 		fdobit = var2;
 	}
-
-	if ((doska->resposlxoda == "Попал") && (fdobit == var2)) //Второе попадание
+	else
 	{
-		fdobit = var3;
+		if ((doska->resposlxoda == "Попал") && (fdobit == var2)) //Второе попадание
+		{
+			fdobit = var3;
+		}
+		else
+		{
+			if ((doska->resposlxoda == "Попал") && (fdobit == var3)) //
+			{
+				fdobit = var3;
+			}
+			else
+			{
+				if ((doska->resposlxoda == "Попал") && (fdobit == var3A)) //
+				{
+					fdobit = var3;
+				}
+				else
+				{
+					if (((doska->resposlxoda == "Мимо") || (doska->resposlxoda == "Тоже мимо")) && (fdobit == var2)) //Промах после первого попадания
+					{
+						fdobit = var3A;
+					}
+					else
+					{
+						if (((doska->resposlxoda == "Мимо") || (doska->resposlxoda == "Тоже мимо")) && (fdobit == var3)) //Промах после серии попаданий
+						{
+							fdobit = var4;
+						}
+						else
+						{
+							if (doska->resposlxoda == "Убит") //Если убили корабль
+							{
+								fdobit = var5;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
-	if ((doska->resposlxoda == "Попал") && (fdobit == var3)) //
-	{
-		fdobit = var3;
-	}
-
-	if ((doska->resposlxoda == "Попал") && ( fdobit == var3A)) //
-	{
-		fdobit = var3;
-	}
-
-	if (((doska->resposlxoda == "Мимо") || (doska->resposlxoda == "Тоже мимо")) && (fdobit == var2)) //Промах после первого попадания
-	{
-		fdobit = var3A;
-	}
-
-	if (((doska->resposlxoda == "Мимо") || (doska->resposlxoda == "Тоже мимо")) && (fdobit == var3)) //Промах после серии попаданий
-	{
-		fdobit = var4;
-	}
-
-	if (doska->resposlxoda == "Убит") //Если убили корабль
-	{
-		fdobit = var5;
-	}
-	
 	if (fdobit == var5)
 	{
 		//Заново инициализируем переменные
@@ -81,48 +93,25 @@ void Igrok::vystrel(int* x, int* y, pole* doska) //Генерация поля в которое игро
 		//Повторяем действия варианта 1
 		do
 		{
-			*(x) = (int)((rand() / 32767.0) * (N));
-			*(y) = (int)((rand() / 32767.0) * (N));
+			*(x) = round(((double) rand() / 32767) * ((N - 1) - 0) + 0);
+			*(y) = round(((double) rand() / 32767) * ((N - 1) - 0) + 0);
 		} while (masproverky[*(x)][*(y)] == PUSTPOD);
-
 		masproverky[*(x)][*(y)] = PUSTPOD;
+
 		//Хранят результата последнего хода
 		xnach = *(x);
-		ynach = *(y);
-	}
+		ynach = *(y); 
+		xpre = xnach;
+		ypre = ynach;
 
-	if (fdobit == var4)
-	{
-		if (napr == 1)
-		{
-			napr = 2;
-			xpre = xnach + 1;
-		}
-		if (napr == 2)
-		{
-			napr = 1;
-			xpre = xnach - 1;
-		}
-		if (napr == 3)
-		{
-			napr = 4;
-			ypre = ynach + 1;
-		}
-		if (napr == 4)
-		{
-			napr = 3;
-			ypre = ynach - 1;
-		}
-
-		*(x) = xpre;
-		*(y) = ypre;
+		return;
 	}
 
 	if (fdobit == var3A)
 	{
 		//Выбираем направление
 		do {
-			napr = (int)((rand() / 32767.0) * (3)) + 1; //Выбераем одно из 4-х направлений
+			napr = round(((double) rand() / 32767) * (4-1) + 1); //Выбераем одно из 4-х направлений
 
 			if ((napr == naprmimo[0]) || (napr == naprmimo[1]) || (napr == naprmimo[2]))
 			{
@@ -130,6 +119,23 @@ void Igrok::vystrel(int* x, int* y, pole* doska) //Генерация поля в которое игро
 			}
 			else
 			{
+				if ((napr == 1) && (!((xnach + 1) < N)))
+				{
+					continue;
+				}
+				if ((napr == 2) && (!((xnach - 1) >= 0)))
+				{
+					continue;
+				}
+				if ((napr == 3) && (!((ynach + 1) < N)))
+				{
+					continue;
+				}
+				if ((napr == 4) && (!((ynach - 1) >= 0)))
+				{
+					continue;
+				}
+
 				ch = ch + 1;
 				naprmimo[ch] = napr;
 				break;
@@ -140,54 +146,169 @@ void Igrok::vystrel(int* x, int* y, pole* doska) //Генерация поля в которое игро
 		if (napr == 1)
 		{
 			xpre = xnach + 1;
+			ypre = ynach;
 		}
-		if (napr == 2)
+		else
 		{
-			xpre = xnach - 1;
+			if (napr == 2)
+			{
+				xpre = xnach - 1;
+				ypre = ynach;
+			}
+			else
+			{
+				if (napr == 3)
+				{
+					ypre = ynach + 1;
+					xpre = xnach;
+				}
+				else
+				{
+					if (napr == 4)
+					{
+						ypre = ynach - 1;
+						xpre = xnach;
+					}
+				}
+			}
 		}
-		if (napr == 3)
-		{
-			ypre = ynach + 1;
-		}
-		if (napr == 4)
-		{
-			ypre = ynach - 1;
-		}
-
 		*(x) = xpre;
 		*(y) = ypre;
+		masproverky[*(x)][*(y)] = PUSTPOD;
+		return;
 	}
 
 	if (fdobit == var3)
 	{
-		if (napr == 1)
+		if ((napr == 1) && ((xpre + 1) < N))
 		{
 			xpre = xpre + 1;
 		}
-		if (napr == 2)
+		else
 		{
-			xpre = xpre - 1;
+			if ((napr == 2) && ((xpre - 1) >= 0))
+			{
+				xpre = xpre - 1;
+			}
+			else {
+				if ((napr == 3) && ((ypre + 1) < N))
+				{
+					ypre = ypre + 1;
+				}
+				else {
+					if ((napr == 4) && ((ypre - 1) >= 0))
+					{
+						ypre = ypre - 1;
+					}
+					else
+					{
+						//Сдесь вариант 4
+						if (napr == 1)
+						{
+							napr = 2;
+							xpre = xnach - 1;
+						}
+						else
+						{
+							if (napr == 2)
+							{
+								napr = 1;
+								xpre = xnach + 1;
+							}
+							else
+							{
+								if (napr == 3)
+								{
+									napr = 4;
+									ypre = ynach - 1;
+								}
+								else
+								{
+									if (napr == 4)
+									{
+										napr = 3;
+										ypre = ynach + 1;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
-		if (napr == 3)
-		{
-			ypre = ypre + 1;
-		}
-		if (napr == 4)
-		{
-			ypre = ypre - 1;
-		}
-
 		*(x) = xpre;
 		*(y) = ypre;
+		masproverky[*(x)][*(y)] = PUSTPOD;
+		return;
+	}
+
+	//Меняем направление на противоположенное
+	if (fdobit == var4)
+	{
+		if (napr == 1)
+		{
+			napr = 2;
+			xpre = xnach - 1;
+		}
+		else
+		{
+			if (napr == 2)
+			{
+				napr = 1;
+				xpre = xnach + 1;
+			}
+			else
+			{
+				if (napr == 3)
+				{
+					napr = 4;
+					ypre = ynach - 1;
+				}
+				else
+				{
+					if (napr == 4)
+					{
+						napr = 3;
+						ypre = ynach + 1;
+					}
+
+
+				}
+			}
+		}
+		*(x) = xpre;
+		*(y) = ypre;
+		masproverky[*(x)][*(y)] = PUSTPOD;
+		fdobit = var3;
+		return;
 	}
 
 	if (fdobit == var2) 
 	{
 		//Выбираем направление
-		napr = (int)((rand() / 32767.0) * (3)) + 1; //Выбераем одно из 4-х направлений
+		do {
+			napr = round(((double) rand() / 32767) * (4 - 1) + 1); //Выбераем одно из 4-х направлений
+			if ((napr == 1) && ((xnach + 1) < N))
+			{
+				break;
+			}
+			if ((napr == 2) && ((xnach - 1) >= 0))
+			{
+				break;
+			}
+			if ((napr == 3) && ((ynach + 1) < N))
+			{
+				break;
+			}
+			if ((napr == 4) && ((ynach - 1) >= 0))
+			{
+				break;
+			}
+		} while (1);
+
 		naprmimo[ch] = napr;
 
-		if (napr == 1)
+		if (napr == 1) 
 		{
 			xpre = xnach + 1;
 		}
@@ -206,23 +327,26 @@ void Igrok::vystrel(int* x, int* y, pole* doska) //Генерация поля в которое игро
 
 		*(x) = xpre;
 		*(y) = ypre;
+		masproverky[*(x)][*(y)] = PUSTPOD;
+		return;
 	}
 
-	
 	if (fdobit == var1)
 	{
 		do 
 		{
-			*(x) = (int)((rand() / 32767.0) * (N));
-			*(y) = (int)((rand() / 32767.0) * (N));
+			*(x) = round(((double) rand() / 32767) * ((N - 1) - 0) + 0);
+			*(y) = round(((double) rand() / 32767) * ((N - 1) - 0) + 0);
 		} 
 		while (masproverky[*(x)][*(y)] == PUSTPOD);
-
 		masproverky[*(x)][*(y)] = PUSTPOD;
+
 		//Хранят результата последнего хода
 		xnach = *(x);
 		ynach = *(y);
-
+		xpre = xnach;
+		ypre = ynach;
+		return;
 	}
 };
 
