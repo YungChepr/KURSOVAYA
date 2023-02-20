@@ -233,6 +233,7 @@ sost Mnogopalybnik::proverkakorablya(int x, int y)//Спрашивает корабль попали ли
 		{
 			bolkorabl[i]->setpalyba(PODBIT);
 			res = PODBIT;
+			break;
 		}
 	}
 

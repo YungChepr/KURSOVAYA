@@ -13,6 +13,7 @@ void pole::chistka() //Чистит поле
 		for (j = 0; j < N; j++) 
 		{
 			pol[i][j].setklet(PUST);
+			pol[i][j].setkoordinata(i, j);
 		}
 	}
 };

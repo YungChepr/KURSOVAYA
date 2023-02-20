@@ -11,24 +11,25 @@
 
 using namespace std;
 
+void set_cursor(int x, int y);
+
 string s1 = "Ivan";
 string s2 = "Maksim";
 
 pole doska1, doska2; //Доски игроков 1 - игрок, 2 - противник
 Odnopalybnik* korabli1[M];
 Odnopalybnik* korabli2[M];
-
-
 Ecran ecranchik; 
 Igrok igrok1(s1), igrok2(s2);
 Igra Morskoyboy;
+
 int X, Y,f,c,i;
 
 int main()
 {
     setlocale(LC_ALL,"RUS");
     string nachsnaach;
-    //Инициализация гинератора случайных чисел
+    //Инициализация генератора случайных чисел
     srand(time(NULL));
 
     do {
@@ -140,10 +141,30 @@ int main()
         cout << "Если вы хотите начать игру заново введите любой символ" << endl;
         cout << "> " ;
         cin >> nachsnaach;
+
+        //Чистим память от объектов корабли
+        for (i = 0; i < kolodno; i++)
+        {
+            free(korabli1[i]);
+            free(korabli2[i]);
+        }
+        doska1.chistka();
+        doska2.chistka();
+        igrok1.Igrok::Igrok(s1);
+        igrok2.Igrok::Igrok(s2);
     } while (nachsnaach != "1");
     cout << "Вы закончили игру";
 }
 
+void set_cursor(int x = 0, int y = 0) //Функция передвижения курсора
+{
+    HANDLE handle;
+    COORD coordinates;
+    handle = GetStdHandle(STD_OUTPUT_HANDLE);
+    coordinates.X = x;
+    coordinates.Y = y;
+    SetConsoleCursorPosition(handle, coordinates);
+}
  
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
