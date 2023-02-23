@@ -10,4 +10,6 @@ public:
 	void prorisovkashapki(pole* doska);
 	void prorisovkapolya(pole* doska);
 	void prorisovkapodvala(pole* doska);
+	void prorisovkastroki(pole* doska, int x, int y, int nomerdoski);
+	static void set_cursor(int x, int y);
 };

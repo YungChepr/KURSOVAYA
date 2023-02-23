@@ -6,12 +6,12 @@ using namespace std;
 
 
 const int N = 10; //Размерность поля при отчете с 1
-const int ZAD = 10;//Задержка - 500 милисекунд
+const int ZAD = 500;//Задержка - 500 милисекунд
 
 
-const int kolodno = 0; //Количество однопалубников
-const int koldvy = 0; //Количество двупалубников
-const int koltre = 1; //Количество трехпалубников
+const int kolodno = 4; //Количество однопалубников
+const int koldvy = 3; //Количество двупалубников
+const int koltre = 2; //Количество трехпалубников
 const int kolchetire = 1; //Количество четырехпалубников
 const int M = kolodno + koldvy + koltre + kolchetire; //Количество кораблей у игрока
 const int KOLPOPITOK = 1000;

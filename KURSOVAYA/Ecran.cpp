@@ -37,13 +37,46 @@ void Ecran::prorisovkapolya(pole* doska)
 	}
 	cout << OTST << "  " << "1 2 3 4 5 6 7 8 9 10" << endl;
 	cout << endl << endl << endl << endl;
+
 };
 
 void Ecran::prorisovkapodvala(pole* doska)
 {
 	//Вывод подвала
-	cout << OTST << "Ход: " << doska->koorposlxoda << endl;
-	cout << OTST << "Результат:   " << doska->resposlxoda << endl;
-	cout << OTST << "Следующий ход игрока: " << doska->imyapolya << endl;
+	cout << OTST << "Ход: " << doska->koorposlxoda << "   " << endl;
+	cout << OTST << "Результат:   " << doska->resposlxoda << "           " << endl; //Второй пробел перезатрет более длинное слово
+	cout << OTST << "Следующий ход игрока: " << doska->imyapolya << "                           " << endl;
 	cout << endl;
+}
+
+void Ecran::prorisovkastroki(pole* doska, int x, int y, int nomerdoski)
+{
+	Ecran::set_cursor(0, 0);
+	int delta;
+	if (nomerdoski == 1)
+	{
+		delta = 0;
+		Ecran::set_cursor((10 + 2 + 2 * y), (3 + 5 + x));
+		cout << Ecran::symvoli[doska->pol[x][y].getklet()];
+
+	}
+	else
+	{ //Надо будет курсор поставить на конец доски
+		delta = 20;
+		Ecran::set_cursor((10 + 2 + 2 * y), (delta + 3 + 5 + x));
+		cout << Ecran::symvoli[doska->pol[x][y].getklet()];
+	}
+	Ecran::set_cursor(0, (2*N + 23));
+}
+
+//Параметр по умолчанию
+//Эту функцию можно вызывать с любым количеством параметров
+void Ecran::set_cursor(int x, int y) //Функция передвижения курсора
+{
+	HANDLE handle;
+	COORD coordinates;
+	handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	coordinates.X = x;
+	coordinates.Y = y;
+	SetConsoleCursorPosition(handle, coordinates);
 }

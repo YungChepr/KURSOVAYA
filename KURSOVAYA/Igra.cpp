@@ -48,7 +48,7 @@ void Igra::hod(Odnopalybnik* korabli[M], pole* doska, int x, int y)
 			}
 			if (vspper == NEPODBIT)
 			{
-				//Ничего не делает
+				//Ничего не делает, то есть проверяем следующий корабль
 			}
 		}
 		cout << endl << "ПОДБИТЫЙ КОРАБЛЬ НЕ НАЙДЕН" << endl;

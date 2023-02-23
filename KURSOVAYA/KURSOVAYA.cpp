@@ -7,11 +7,8 @@
 #include "Mnogopalybnik.h"
 #include "Igra.h"
 #include <conio.h>
-#include <windows.h>
 
 using namespace std;
-
-void set_cursor(int x, int y);
 
 string s1 = "Ivan";
 string s2 = "Maksim";
@@ -23,7 +20,7 @@ Ecran ecranchik;
 Igrok igrok1(s1), igrok2(s2);
 Igra Morskoyboy;
 
-int X, Y,f,c,i;
+int X, Y,f,c,i,f1;
 
 int main()
 {
@@ -79,19 +76,29 @@ int main()
         cout << "Нажмите любую клавишу... ";
         c=_getch();
         
-
         //Блок хода игры
         do {
-            system("cls");
+            
             if ((Morskoyboy.scetchikXodov % 2) == 0)
             {
                 igrok1.vystrel(&X, &Y, &doska2);
                 Morskoyboy.hod(korabli2, &doska2, X, Y);
 
                 ecranchik.prorisovkashapki(&doska1);
-                ecranchik.prorisovkapolya(&doska1);
-                ecranchik.prorisovkapolya(&doska2);
-                cout << "          " << "Этот ход сделал игрок: " << Igra::igrokperviy << endl;
+                if (Morskoyboy.scetchikXodov == 0)
+                {
+                    //Прорисовка 1 хода
+                    system("cls");
+                    ecranchik.prorisovkashapki(&doska1);
+                    ecranchik.prorisovkapolya(&doska1);
+                    ecranchik.prorisovkapolya(&doska2);
+                }
+                else
+                {
+                    ecranchik.prorisovkastroki(&doska1, X, Y, 1);
+                    ecranchik.prorisovkastroki(&doska2, X, Y, 2);
+                }
+                cout << "          " << "Этот ход сделал игрок: " << Igra::igrokperviy << "                 " << endl; //Длинный пробел перезатрет более длинное слово
                 ecranchik.prorisovkapodvala(&doska2);
 
                 f = Morskoyboy.konecigry(korabli2);//1 - если игры продолжается, 0 - если закончилась
@@ -107,9 +114,9 @@ int main()
                 Morskoyboy.hod(korabli1, &doska1, X, Y);
 
                 ecranchik.prorisovkashapki(&doska1);
-                ecranchik.prorisovkapolya(&doska1);
-                ecranchik.prorisovkapolya(&doska2);
-                cout << "          " << "Этот ход сделал игрок: " << Igra::igrokvtoroy << endl;
+                ecranchik.prorisovkastroki(&doska1, X, Y, 1);
+                ecranchik.prorisovkastroki(&doska2, X, Y, 2);
+                cout << "          " << "Этот ход сделал игрок: " << Igra::igrokvtoroy << "                 " << endl; //Длинный пробел перезатрет более длинное слово
                 ecranchik.prorisovkapodvala(&doska1);
 
                 f = Morskoyboy.konecigry(korabli1);//1 - если игры продолжается, 0 - если закончилась
@@ -121,8 +128,8 @@ int main()
             Morskoyboy.scetchikXodov = Morskoyboy.scetchikXodov + 1;
 
             cout << "Следующий ход... "; //Задержка после каждого хода
-            //Sleep(ZAD); //Задержка перед следующим ходом
-             c = _getch();
+            Sleep(ZAD); //Задержка перед следующим ходом
+            //c = _getch();
 
         } while (f);
         
@@ -130,10 +137,11 @@ int main()
 
         //Блок конца игры
         system("cls");
+        cout << endl << endl << endl;
         ecranchik.prorisovkapolya(&doska1);
         ecranchik.prorisovkapolya(&doska2);
        
-        cout << "Победил игрок: " << Morskoyboy.getimyapobeditelya() << endl << endl;
+        cout << "Победил игрок: " << Morskoyboy.getimyapobeditelya()  << endl << endl;
 
         
           
@@ -152,19 +160,12 @@ int main()
         doska2.chistka();
         igrok1.Igrok::Igrok(s1);
         igrok2.Igrok::Igrok(s2);
+        Morskoyboy.scetchikXodov = 0;
     } while (nachsnaach != "1");
     cout << "Вы закончили игру";
 }
 
-void set_cursor(int x = 0, int y = 0) //Функция передвижения курсора
-{
-    HANDLE handle;
-    COORD coordinates;
-    handle = GetStdHandle(STD_OUTPUT_HANDLE);
-    coordinates.X = x;
-    coordinates.Y = y;
-    SetConsoleCursorPosition(handle, coordinates);
-}
+
  
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
