@@ -10,21 +10,47 @@
 
 using namespace std;
 
+
 string s1 = "Ivan";
 string s2 = "Maksim";
 
 pole doska1, doska2; //Доски игроков 1 - игрок, 2 - противник
-Odnopalybnik* korabli1[M];
-Odnopalybnik* korabli2[M];
+Odnopalybnik* korabli1[MMAX];
+Odnopalybnik* korabli2[MMAX];
 Ecran ecranchik; 
 Igrok igrok1(s1), igrok2(s2);
 Igra Morskoyboy;
 
 int X, Y,f,c,i,f1;
 
+int N; //Фактическая размерность поля при отчете с 1
+
+int kolodnoGEL;//Желаемое Количество однопалубников
+int koldvyGEL; //Желаемое Количество двупалубников
+int koltreGEL; //Желаемое Количество трехпалубников
+int kolchetireGEL; //Желаемое Количество четырехпалубников
+int MGEL = MMAX; //Желаемое Количество кораблей у игрока
+
+int kolodno;//Фактическая Количество однопалубников
+int koldvy; //Фактическая Количество двупалубников
+int koltre; //Фактическая Количество трехпалубников
+int kolchetire; //Фактическая Количество четырехпалубников
+int M = MMAX; //Фактическая Количество кораблей у игрока
+
 int main()
 {
     setlocale(LC_ALL,"RUS");
+
+    N = NFIX;
+   
+    kolodno = kolodnoFIX;
+    koldvy = koldvyFIX;
+    koltre = koltreFIX;
+    kolchetire = kolchetireFIX;
+
+    M = kolodno + koldvy + koltre + kolchetire;
+    MGEL = kolodnoGEL + koldvyGEL + koltreGEL + kolchetireGEL;
+
     string nachsnaach;
     //Инициализация генератора случайных чисел
     srand(time(NULL));

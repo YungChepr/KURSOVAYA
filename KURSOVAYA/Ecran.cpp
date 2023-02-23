@@ -2,7 +2,8 @@
 
 const string Ecran::symvoli[4] = { "  ","· ","+ ","x " }; //Символы соответсвующие состояниям клеток поля
 
-const string Ecran::bykvi[10] = { "a ","b ","c ","d ","e ","f ","g ","h ","j ","k " }; //Символы соответсвующие координатам по Y
+const string Ecran::tsifri[NMAX] = { "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20" }; //Символы соответсвующие координатам по X
+const string Ecran::bykvi[NMAX] = { "a ","b ","c ","d ","e ","f ","g ","h ","j ","k ", "l ", "m ", "n " , "o " , "p " , "q " , "r " , "s " , "t " , "u " }; //Символы соответсвующие координатам по Y
 
 const string OTST = "          "; //Отступ при печати новой строчки 5 пробелов
 
@@ -23,19 +24,45 @@ void Ecran::prorisovkapolya(pole* doska)
 	cout << endl;
 
 	//Вывод основного поля
-	cout << OTST << "  " << "1 2 3 4 5 6 7 8 9 10" << endl;
+	cout << OTST << "  ";
+	for (i = 0; i < N; i++)
+	{
+		if(i<10)
+		{
+			cout << Ecran::tsifri[i] << " ";
+		}
+		else
+		{
+			cout << Ecran::tsifri[i];
+		}
+	}
+	cout << endl;
+
 	for (i = 0; i < N; i++) 
 	{
 		cout << OTST << Ecran::bykvi[i];
 		for (j = 0; j < N; j++)
 		{
 			cout << Ecran::symvoli[doska->pol[i][j].getklet()];
-			
 		}
 		cout << Ecran::bykvi[i];
 		cout << endl;
 	}
-	cout << OTST << "  " << "1 2 3 4 5 6 7 8 9 10" << endl;
+
+	cout << OTST << "  ";
+	for (i = 0; i < N; i++)
+	{
+		if (i < 10)
+		{
+			cout << Ecran::tsifri[i] << " ";
+		}
+		else
+		{
+			cout << Ecran::tsifri[i];
+		}
+	}
+	cout << endl;
+
 	cout << endl << endl << endl << endl;
 
 };
@@ -55,15 +82,15 @@ void Ecran::prorisovkastroki(pole* doska, int x, int y, int nomerdoski)
 	int delta;
 	if (nomerdoski == 1)
 	{
-		delta = 0;
-		Ecran::set_cursor((10 + 2 + 2 * y), (3 + 5 + x));
+		delta = 3 + 5;
+		Ecran::set_cursor((10 + 2 + 2 * y), (delta + x));
 		cout << Ecran::symvoli[doska->pol[x][y].getklet()];
 
 	}
 	else
 	{ //Надо будет курсор поставить на конец доски
-		delta = 20;
-		Ecran::set_cursor((10 + 2 + 2 * y), (delta + 3 + 5 + x));
+		delta = 8 + 1 + N + 9;
+		Ecran::set_cursor((10 + 2 + 2 * y), (delta + x));
 		cout << Ecran::symvoli[doska->pol[x][y].getklet()];
 	}
 	Ecran::set_cursor(0, (2*N + 23));

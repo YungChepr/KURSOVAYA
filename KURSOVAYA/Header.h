@@ -2,19 +2,36 @@
 #include <iostream>
 #include "string"
 #include <windows.h>
+
 using namespace std;
 
+const int NMAX = 20; //МАКСИМАЛЬНОЕ размерность поля
+const int NFIX = 10; //Обычная Размерность поля при отчете с 1
 
-const int N = 10; //Размерность поля при отчете с 1
-const int ZAD = 500;//Задержка - 500 милисекунд
 
+const int MMAX = 400; //МАКСИМАЛЬНОЕ количество кораблей
+const int kolodnoFIX = 4; //Обычная Количество однопалубников
+const int koldvyFIX = 3; //Обычная Количество двупалубников
+const int koltreFIX = 2; //Обычная Количество трехпалубников
+const int kolchetireFIX = 1; //Обычная Количество четырехпалубников
+const int MFIX = kolodnoFIX + koldvyFIX + koltreFIX + kolchetireFIX; //Обычная Количество кораблей у игрока
 
-const int kolodno = 4; //Количество однопалубников
-const int koldvy = 3; //Количество двупалубников
-const int koltre = 2; //Количество трехпалубников
-const int kolchetire = 1; //Количество четырехпалубников
-const int M = kolodno + koldvy + koltre + kolchetire; //Количество кораблей у игрока
+const int ZAD = 10;//Задержка - 500 милисекунд
 const int KOLPOPITOK = 1000;
+
+extern int N; //Фактическая размерность поля при отчете с 1
+
+extern int kolodnoGEL;//Желаемое Количество однопалубников
+extern int koldvyGEL; //Желаемое Количество двупалубников
+extern int koltreGEL; //Желаемое Количество трехпалубников
+extern int kolchetireGEL; //Желаемое Количество четырехпалубников
+extern int MGEL; //Желаемое Количество кораблей у игрока
+
+extern int kolodno;//Фактическая Количество однопалубников
+extern int koldvy; //Фактическая Количество двупалубников
+extern int koltre; //Фактическая Количество трехпалубников
+extern int kolchetire; //Фактическая Количество четырехпалубников
+extern int M; //Фактическая Количество кораблей у игрока
 
 enum sostoyanie //Состояние поля
 {

@@ -2,7 +2,7 @@
 #include "Ecran.h"
 
 
-void Igra::rasstanovka(Odnopalybnik* korabli[M], pole* doska)
+void Igra::rasstanovka(Odnopalybnik* korabli[MMAX], pole* doska)
 {
 	int i;
 	for (i = (M-1); i >=0; i--)
@@ -12,13 +12,13 @@ void Igra::rasstanovka(Odnopalybnik* korabli[M], pole* doska)
 	imyapobeditelya = "Не известно";
 };
 
-void Igra::hod(Odnopalybnik* korabli[M], pole* doska, int x, int y)
+void Igra::hod(Odnopalybnik* korabli[MMAX], pole* doska, int x, int y)
 {
 	int i;
 	sostoyanie per;//Дополнительная переменная
 	sost vspper;//Дополнительная переменная
 
-	doska->koorposlxoda = Ecran::bykvi[x] + to_string(y + 1);
+	doska->koorposlxoda = Ecran::bykvi[x] + Ecran::tsifri[y];
 
 	per = doska->pol[x][y].getklet();
 	if (per == PUST)
@@ -56,7 +56,7 @@ void Igra::hod(Odnopalybnik* korabli[M], pole* doska, int x, int y)
 	
 };
 
-int Igra::konecigry(Odnopalybnik* korabli[M])
+int Igra::konecigry(Odnopalybnik* korabli[MMAX])
 {
 	int i;
 

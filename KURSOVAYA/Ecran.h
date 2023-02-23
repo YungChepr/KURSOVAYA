@@ -5,7 +5,8 @@ class Ecran
 {
 public:
 	static const string symvoli[4]; //Символы соответсвующие состояниям клеток поля
-	static const string bykvi[10]; //Символы соответсвующие координатам по Y
+	static const string tsifri[NMAX]; //Символы соответсвующие координатам по X
+	static const string bykvi[NMAX]; //Символы соответсвующие координатам по Y
 
 	void prorisovkashapki(pole* doska);
 	void prorisovkapolya(pole* doska);
