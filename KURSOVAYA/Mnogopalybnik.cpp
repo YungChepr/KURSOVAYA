@@ -100,7 +100,7 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 		}
 		else
 		{
-			break;
+			//break;
 		}
 
 		if (((x + 1) < N) && ((y + 1) < N))
@@ -112,7 +112,7 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 		}
 		else
 		{
-			break;
+			//break;
 		}
 
 		if ((y + 1) < N)
@@ -124,7 +124,7 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 		}
 		else
 		{
-			break;
+			//break;
 		}
 
 		if (((x - 1) >= 0) && ((y + 1) < N))
@@ -136,7 +136,7 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 		}
 		else
 		{
-			break;
+			//break;
 		}
 
 		if (((x - 1) >= 0))
@@ -148,7 +148,7 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 		}
 		else
 		{
-			break;
+			//break;
 		}
 
 		if (((x - 1) >= 0) && ((y - 1) >= 0))
@@ -160,7 +160,7 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 		}
 		else
 		{
-			break;
+			//break;
 		}
 
 		if (((y - 1) >= 0))
@@ -172,7 +172,7 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 		}
 		else
 		{
-			break;
+			//break;
 		}
 
 		if (((x + 1) < N) && ((y - 1) >= 0))
@@ -184,27 +184,40 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 		}
 		else
 		{
-			break;
+			//break;
 		}
 		//Сохраняем подходящие координаты многопалубника в массив
 		xk[i] = x; 
 		yk[i] = y;
 
-		if (napr == 1)
+		if ((napr == 1) && ((x + 1) < N))
 		{
 			x = x + 1;
 		}
-		if (napr == 2)
+		else
 		{
-			x = x - 1;
-		}
-		if (napr == 3)
-		{
-			y = y + 1;
-		}
-		if (napr == 4)
-		{
-			y = y - 1;
+			if ((napr == 2) && ((x - 1) >= 0))
+			{
+				x = x - 1;
+			}
+			else
+			{
+				if ((napr == 3) && ((y + 1) < N))
+				{
+					y = y + 1;
+				}
+				else
+				{
+					if ((napr == 4) && ((y - 1) >= 0))
+					{
+						y = y - 1;
+					}
+					else
+					{
+						break;
+					}
+				}
+			}
 		}
 	}
 	if (i == kolpalyb)

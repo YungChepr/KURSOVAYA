@@ -6,14 +6,14 @@
 using namespace std;
 
 const int NMAX = 20; //МАКСИМАЛЬНОЕ размерность поля
-const int NFIX = 10; //Обычная Размерность поля при отчете с 1
+const int NFIX = 3; //Обычная Размерность поля при отчете с 1
 
 
 const int MMAX = 400; //МАКСИМАЛЬНОЕ количество кораблей
-const int kolodnoFIX = 4; //Обычная Количество однопалубников
-const int koldvyFIX = 3; //Обычная Количество двупалубников
-const int koltreFIX = 2; //Обычная Количество трехпалубников
-const int kolchetireFIX = 1; //Обычная Количество четырехпалубников
+const int kolodnoFIX = 0; //Обычная Количество однопалубников
+const int koldvyFIX = 2; //Обычная Количество двупалубников
+const int koltreFIX = 0; //Обычная Количество трехпалубников
+const int kolchetireFIX = 0; //Обычная Количество четырехпалубников
 const int MFIX = kolodnoFIX + koldvyFIX + koltreFIX + kolchetireFIX; //Обычная Количество кораблей у игрока
 
 const int ZAD = 10;//Задержка - 500 милисекунд

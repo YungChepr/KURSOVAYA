@@ -18,7 +18,7 @@ void Ecran::prorisovkapolya(pole* doska)
 	int i,j; //Счетчик
 
 	//Вывод шапки
-	cout << endl << endl;
+	cout << endl;
 
 	cout << OTST << "Игрок: " << doska->imyapolya << endl;
 	cout << endl;
@@ -62,9 +62,7 @@ void Ecran::prorisovkapolya(pole* doska)
 		}
 	}
 	cout << endl;
-
-	cout << endl << endl << endl << endl;
-
+	cout << endl;
 };
 
 void Ecran::prorisovkapodvala(pole* doska)
@@ -72,8 +70,7 @@ void Ecran::prorisovkapodvala(pole* doska)
 	//Вывод подвала
 	cout << OTST << "Ход: " << doska->koorposlxoda << "   " << endl;
 	cout << OTST << "Результат:   " << doska->resposlxoda << "           " << endl; //Второй пробел перезатрет более длинное слово
-	cout << OTST << "Следующий ход игрока: " << doska->imyapolya << "                           " << endl;
-	cout << endl;
+	cout << OTST << "Следующий ход игрока: " << doska->imyapolya << "                           ";
 }
 
 void Ecran::prorisovkastroki(pole* doska, int x, int y, int nomerdoski)
@@ -82,18 +79,18 @@ void Ecran::prorisovkastroki(pole* doska, int x, int y, int nomerdoski)
 	int delta;
 	if (nomerdoski == 1)
 	{
-		delta = 3 + 5;
+		delta = 3 + 4;
 		Ecran::set_cursor((10 + 2 + 2 * y), (delta + x));
 		cout << Ecran::symvoli[doska->pol[x][y].getklet()];
 
 	}
 	else
 	{ //Надо будет курсор поставить на конец доски
-		delta = 8 + 1 + N + 9;
+		delta = 8 + 1 + N + 4;
 		Ecran::set_cursor((10 + 2 + 2 * y), (delta + x));
 		cout << Ecran::symvoli[doska->pol[x][y].getklet()];
 	}
-	Ecran::set_cursor(0, (2*N + 23));
+	Ecran::set_cursor(0, (2*N + 15));
 }
 
 //Параметр по умолчанию
