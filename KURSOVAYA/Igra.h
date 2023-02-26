@@ -7,7 +7,7 @@ class Igra
 private:
 	string imyapobeditelya;
 public: 
-	void rasstanovka(Odnopalybnik* korabli[MMAX], pole* doska);
+	int rasstanovka(Odnopalybnik* korabli[MMAX], pole* doska);
 	void hod(Odnopalybnik* korabli[MMAX], pole* doska, int x, int y);
 	int konecigry(Odnopalybnik* korabli[MMAX]);
 	string getimyapobeditelya();

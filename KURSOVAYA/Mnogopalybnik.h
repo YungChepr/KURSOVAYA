@@ -13,7 +13,7 @@ public:
 	//void setpalyba(sost p);
 	sost getkorabl();
 	//void setkorabl(sost k);
-	void ustanovkakorablya(pole* doska); //Установка на поле многопалубника
+	int ustanovkakorablya(pole* doska); //Установка на поле многопалубника
 	sost proverkakorablya(int x, int y); //Спрашивает корабль попали ли в него
 };
 

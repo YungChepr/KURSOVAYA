@@ -62,20 +62,21 @@ sost Mnogopalybnik::getkorabl()
 	Odnopalybnik::setkorabl(k);
 }; */
 
-void Mnogopalybnik::ustanovkakorablya(pole* doska)
+int Mnogopalybnik::ustanovkakorablya(pole* doska)
 {
 	int x,y, xk[4], yk[4], napr, kolpopytok,i; //¬ массиве лежит максимум 4 координаты дл€ 4х-палубника
 	
 	kolpopytok = 0;
 	do
 	{
-	//ѕроверка не более 1000 попыток расстановки корабл€
+	//ѕроверка не более KOLPOP попыток расстановки корабл€
 	kolpopytok = kolpopytok + 1;
-	if (kolpopytok > 1000)
+	if (kolpopytok > KOLPOP)
 	{
-		//≈сли сделано 1000 попыток корабль поставить нельз€
-		cout << endl << "ƒостигнуто ограничение количества попыток расстановки корабл€.  орабль поставить не удалось!!!" << endl;
-		break;
+		//≈сли сделано KOLPOP попыток корабль поставить нельз€
+		//cout << endl << "ƒостигнуто ограничение количества попыток расстановки корабл€.  орабль поставить не удалось!!!" << endl;
+		//break;
+		return 1; //ќшибка корабль поставить не удалось
 	}
 
 	x = (int)((rand() / 32767.0) * (N));
@@ -234,6 +235,7 @@ void Mnogopalybnik::ustanovkakorablya(pole* doska)
 		doska->pol[xk[i]][yk[i]].setklet(KOR);
 	}
 	//setkorabl(NEPODBIT);
+	return 0; //”становка прошла успешно
 };
 
 sost Mnogopalybnik::proverkakorablya(int x, int y)//—прашивает корабль попали ли в него

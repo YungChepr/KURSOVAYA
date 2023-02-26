@@ -10,7 +10,6 @@
 
 using namespace std;
 
-
 string s1 = "Ivan";
 string s2 = "Maksim";
 
@@ -21,7 +20,7 @@ Ecran ecranchik;
 Igrok igrok1(s1), igrok2(s2);
 Igra Morskoyboy;
 
-int X, Y,f,c,i,f1;
+int X, Y,f,c,i,f1,indekator1, indekator2,schetchikk;
 
 int N; //Фактическая размерность поля при отчете с 1
 
@@ -89,95 +88,134 @@ int main()
             korabli2[i + kolodno + koldvy + koltre] = new Mnogopalybnik(4);
         }
 
+        schetchikk = 1;
+        indekator1 = 0;
+        indekator2 = 0;
 
-        Morskoyboy.rasstanovka(korabli1, &doska1);
-        Morskoyboy.rasstanovka(korabli2, &doska2);
+        do 
+        {
+            if (indekator1 == 0)
+            {
+                indekator1 = Morskoyboy.rasstanovka(korabli1, &doska1);
+            }
+            if ((indekator1 == 0) && (indekator2 == 0))
+            {
+                indekator2 = Morskoyboy.rasstanovka(korabli2, &doska2);
+            }
 
-        ecranchik.prorisovkapolya(&doska1);
-        ecranchik.prorisovkapolya(&doska2);
-        
-        //Решить кто первый ходит
-        cout << endl << endl << endl << endl;
-        cout << "Первым ходит игрок " << s1 << endl;
-        cout << "Нажмите любую клавишу... ";
-        c=_getch();
-        
-        //Блок хода игры
-        do {
+            if ((indekator1 == 0) && (indekator2 == 0))
+            {
+                break;
+            }
+            else 
+            {
+                if (indekator1 == 1)
+                {
+                    doska1.chistka();
+                    indekator1 = 0;
+                }
+                if (indekator2 == 1)
+                {
+                    doska2.chistka();
+                    indekator2 = 0;
+                }
+            }
+
+            schetchikk = schetchikk + 1;
+        } while (schetchikk < KOLRAZ);
+
+        if (schetchikk > KOLRAZ)
+        {
+            cout <<  endl << "Расстановка кораблей не удалась, запустите игру снова "  << endl << endl;
+        }
+        else
+        {
+                ecranchik.prorisovkapolya(&doska1);
+                ecranchik.prorisovkapolya(&doska2);
+
+                //Решить кто первый ходит
+                cout << endl << endl << endl << endl;
+                cout << "Первым ходит игрок " << s1 << endl;
+                cout << "Нажмите любую клавишу... ";
+                c = _getch();
+
+                //Блок хода игры
+                do {
+
+                    if ((Morskoyboy.scetchikXodov % 2) == 0)
+                    {
+                        igrok1.vystrel(&X, &Y, &doska2);
+                        Morskoyboy.hod(korabli2, &doska2, X, Y);
+
+                        ecranchik.prorisovkashapki(&doska1);
+                        if (Morskoyboy.scetchikXodov == 0)
+                        {
+                            //Прорисовка 1 хода
+                            system("cls");
+                            ecranchik.prorisovkashapki(&doska1);
+                            ecranchik.prorisovkapolya(&doska1);
+                            ecranchik.prorisovkapolya(&doska2);
+                        }
+                        else
+                        {
+                            ecranchik.prorisovkastroki(&doska1, X, Y, 1);
+                            ecranchik.prorisovkastroki(&doska2, X, Y, 2);
+                        }
+                        cout << "          " << "Этот ход сделал игрок: " << Igra::igrokperviy << "                 " << endl; //Длинный пробел перезатрет более длинное слово
+                        ecranchik.prorisovkapodvala(&doska2);
+
+                        f = Morskoyboy.konecigry(korabli2);//1 - если игры продолжается, 0 - если закончилась
+                        if (f == 0)
+                        {
+                            Morskoyboy.setimyapobeditelya(s1);
+                        }
+                    }
+
+                    else
+                    {
+                        igrok2.vystrel(&X, &Y, &doska1);
+                        Morskoyboy.hod(korabli1, &doska1, X, Y);
+
+                        ecranchik.prorisovkashapki(&doska1);
+                        ecranchik.prorisovkastroki(&doska1, X, Y, 1);
+                        ecranchik.prorisovkastroki(&doska2, X, Y, 2);
+                        cout << "          " << "Этот ход сделал игрок: " << Igra::igrokvtoroy << "                 " << endl; //Длинный пробел перезатрет более длинное слово
+                        ecranchik.prorisovkapodvala(&doska1);
+
+                        f = Morskoyboy.konecigry(korabli1);//1 - если игры продолжается, 0 - если закончилась
+                        if (f == 0)
+                        {
+                            Morskoyboy.setimyapobeditelya(s2);
+                        }
+                    }
+                    Morskoyboy.scetchikXodov = Morskoyboy.scetchikXodov + 1;
+
+                    Sleep(ZAD); //Задержка перед следующим ходом
+                    //cout << "Следующий ход... "; //Задержка после каждого хода
+                    //c = _getch();
+
+                } while (f);
+
+
+
+                //Блок конца игры
+                system("cls");
+                cout << endl << endl << endl;
+                ecranchik.prorisovkapolya(&doska1);
+                ecranchik.prorisovkapolya(&doska2);
+
+                cout << "Победил игрок: " << Morskoyboy.getimyapobeditelya() << endl << endl;
+
+
             
-            if ((Morskoyboy.scetchikXodov % 2) == 0)
-            {
-                igrok1.vystrel(&X, &Y, &doska2);
-                Morskoyboy.hod(korabli2, &doska2, X, Y);
-
-                ecranchik.prorisovkashapki(&doska1);
-                if (Morskoyboy.scetchikXodov == 0)
-                {
-                    //Прорисовка 1 хода
-                    system("cls");
-                    ecranchik.prorisovkashapki(&doska1);
-                    ecranchik.prorisovkapolya(&doska1);
-                    ecranchik.prorisovkapolya(&doska2);
-                }
-                else
-                {
-                    ecranchik.prorisovkastroki(&doska1, X, Y, 1);
-                    ecranchik.prorisovkastroki(&doska2, X, Y, 2);
-                }
-                cout << "          " << "Этот ход сделал игрок: " << Igra::igrokperviy << "                 " << endl; //Длинный пробел перезатрет более длинное слово
-                ecranchik.prorisovkapodvala(&doska2);
-
-                f = Morskoyboy.konecigry(korabli2);//1 - если игры продолжается, 0 - если закончилась
-                if (f == 0)
-                {
-                    Morskoyboy.setimyapobeditelya(s1);
-                }
-            }
-
-            else
-            {
-                igrok2.vystrel(&X, &Y, &doska1);
-                Morskoyboy.hod(korabli1, &doska1, X, Y);
-
-                ecranchik.prorisovkashapki(&doska1);
-                ecranchik.prorisovkastroki(&doska1, X, Y, 1);
-                ecranchik.prorisovkastroki(&doska2, X, Y, 2);
-                cout << "          " << "Этот ход сделал игрок: " << Igra::igrokvtoroy << "                 " << endl; //Длинный пробел перезатрет более длинное слово
-                ecranchik.prorisovkapodvala(&doska1);
-
-                f = Morskoyboy.konecigry(korabli1);//1 - если игры продолжается, 0 - если закончилась
-                if (f == 0)
-                {
-                    Morskoyboy.setimyapobeditelya(s2);
-                }
-            }
-            Morskoyboy.scetchikXodov = Morskoyboy.scetchikXodov + 1;
-
-            Sleep(ZAD); //Задержка перед следующим ходом
-            //cout << "Следующий ход... "; //Задержка после каждого хода
-            //c = _getch();
-
-        } while (f);
-        
-        
-
-        //Блок конца игры
-        system("cls");
-        cout << endl << endl << endl;
-        ecranchik.prorisovkapolya(&doska1);
-        ecranchik.prorisovkapolya(&doska2);
-       
-        cout << "Победил игрок: " << Morskoyboy.getimyapobeditelya()  << endl << endl;
-
-        
-          
+        }
         cout << "Если вы хотите закончить игру введите 1" << endl;
         cout << "Если вы хотите начать игру заново введите любой символ" << endl;
         cout << "> " ;
         cin >> nachsnaach;
 
         //Чистим память от объектов корабли
-        for (i = 0; i < kolodno; i++)
+        for (i = 0; i < M; i++)
         {
             free(korabli1[i]);
             free(korabli2[i]);

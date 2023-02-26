@@ -2,14 +2,21 @@
 #include "Ecran.h"
 
 
-void Igra::rasstanovka(Odnopalybnik* korabli[MMAX], pole* doska)
+int Igra::rasstanovka(Odnopalybnik* korabli[MMAX], pole* doska)
 {
 	int i;
+
+	imyapobeditelya = "Не известно";
+
 	for (i = (M-1); i >=0; i--)
 	{
-		korabli[i]->ustanovkakorablya(doska);
+		if (korabli[i]->ustanovkakorablya(doska) == 1)
+		{
+			return 1; //Ошибка расстановка кораблей не получилась
+		}
 	}
-	imyapobeditelya = "Не известно";
+	
+	return 0; //расстановка кораблей прошла успешно
 };
 
 void Igra::hod(Odnopalybnik* korabli[MMAX], pole* doska, int x, int y)
