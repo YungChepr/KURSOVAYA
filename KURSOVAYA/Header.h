@@ -6,6 +6,7 @@
 using namespace std;
 
 const int NMAX = 20; //МАКСИМАЛЬНОЕ размерность поля
+const int NMIN = 3; //Минимальное размерность поля
 const int NFIX = 3; //Обычная Размерность поля при отчете с 1
 
 
@@ -24,12 +25,6 @@ const int ZAD = 10;//Задержка - 500 милисекунд
 const int KOLPOPITOK = 1000;
 
 extern int N; //Фактическая размерность поля при отчете с 1
-
-extern int kolodnoGEL;//Желаемое Количество однопалубников
-extern int koldvyGEL; //Желаемое Количество двупалубников
-extern int koltreGEL; //Желаемое Количество трехпалубников
-extern int kolchetireGEL; //Желаемое Количество четырехпалубников
-extern int MGEL; //Желаемое Количество кораблей у игрока
 
 extern int kolodno;//Фактическая Количество однопалубников
 extern int koldvy; //Фактическая Количество двупалубников

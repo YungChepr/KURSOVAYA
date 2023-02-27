@@ -9,7 +9,7 @@
 #include <conio.h>
 
 using namespace std;
-
+ 
 string s1 = "Ivan";
 string s2 = "Maksim";
 
@@ -48,7 +48,7 @@ int main()
     kolchetire = kolchetireFIX;
 
     M = kolodno + koldvy + koltre + kolchetire;
-    MGEL = kolodnoGEL + koldvyGEL + koltreGEL + kolchetireGEL;
+    
 
     string nachsnaach;
     //Инициализация генератора случайных чисел
@@ -57,7 +57,43 @@ int main()
     do {
         //Блок начала игры
         system("cls");
-        cout << "Приветсвуем в игре Морской бой!" << endl;
+        cout << "Приветсвуем в игре Морской бой!" << endl << endl;
+        
+        do {
+            cout << "Введите размер поля(стандартный размер 10) но не менее" << NMIN << " и не более " << NMAX << ": ";
+            cin >> N;
+            cout << endl;
+
+        } while (N < NMIN || N > NMAX);
+
+        do {
+            cout << "Введите количество кораблей четырехпалубников но не более " << N / 4 << ": ";
+            cin >> kolchetire;
+
+        } while (kolchetire < 0 || kolchetire > N/4);
+
+        do {
+            printf("Введите количество кораблей трехпалубников    но не более %d: ", N/2);
+            cin >> koltre;
+
+        } while (koltre < 0 || koltre > N/2);
+
+        do {
+            printf("Введите количество кораблей двухпалубников    но не более %d: ", N);
+            cin >> koldvy;
+
+        } while (koldvy < 0 || koldvy > N);
+
+        do {
+            printf("Введите количество кораблей однопалубников    но не более %d: ", 2*N);
+            cin >> kolodno;
+
+        } while (kolodno < 0 || kolodno > 2*N);
+
+        M = kolodno + koldvy + koltre + kolchetire;
+ 
+        system("cls");
+        cout << "Приветсвуем в игре Морской бой!" << endl ;
         cout << "Игрок 1: " << s1 << endl;
         cout << "Игрок 2: " << s2 << endl;
         Igra::igrokperviy = s1;
@@ -65,6 +101,8 @@ int main()
        
         doska1.imyapolya = igrok1.getimya();
         doska2.imyapolya = igrok2.getimya();
+
+       
 
         //Блок создания кораблей
         for (i = 0; i < kolodno; i++)
