@@ -60,7 +60,7 @@ int main()
         cout << "Приветсвуем в игре Морской бой!" << endl << endl;
         
         do {
-            cout << "Введите размер поля(стандартный размер 10) но не менее" << NMIN << " и не более " << NMAX << ": ";
+            cout << "Введите размер поля(стандартный размер 10) но не менее " << NMIN << " и не более " << NMAX << ": ";
             cin >> N;
             cout << endl;
 
@@ -73,22 +73,22 @@ int main()
         } while (kolchetire < 0 || kolchetire > N/4);
 
         do {
-            printf("Введите количество кораблей трехпалубников    но не более %d: ", N/2);
+            cout << "Введите количество кораблей трехпалубников    но не более " << N / 2 << ": ";
             cin >> koltre;
 
         } while (koltre < 0 || koltre > N/2);
 
         do {
-            printf("Введите количество кораблей двухпалубников    но не более %d: ", N);
+            cout << "Введите количество кораблей двухпалубников    но не более " << N  << ": ";
             cin >> koldvy;
 
         } while (koldvy < 0 || koldvy > N);
 
         do {
-            printf("Введите количество кораблей однопалубников    но не более %d: ", 2*N);
+            cout << "Введите количество кораблей однопалубников    но не более " << 2*N << ": ";
             cin >> kolodno;
 
-        } while (kolodno < 0 || kolodno > 2*N);
+        } while (kolodno < 1 || kolodno > 2*N);
 
         M = kolodno + koldvy + koltre + kolchetire;
  
@@ -162,7 +162,7 @@ int main()
             schetchikk = schetchikk + 1;
         } while (schetchikk < KOLRAZ);
 
-        if (schetchikk > KOLRAZ)
+        if (schetchikk >= KOLRAZ)
         {
             cout <<  endl << "Расстановка кораблей не удалась, запустите игру снова "  << endl << endl;
         }
